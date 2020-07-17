@@ -1,5 +1,13 @@
 # invdo
 
+
+## Making Desktop App
+
+```
+vue create hello-world
+vue add electron-builder
+```
+
 ## Project setup
 ```
 npm install
