@@ -4,6 +4,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Home1Comp from '../components/Home1.comp'
 import WelcomeComp from '../components/Welcome.comp'
 import VueHelpComp from '../components/HelloWorld'
 
@@ -14,9 +15,10 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            component: WelcomeComp,
+            component: Home1Comp,
             props: true
         },
-        { path: '/vue', component: VueHelpComp}
+        { path: '/check', component: WelcomeComp },
+        { path: '/vue', component: VueHelpComp }
     ]
 })
