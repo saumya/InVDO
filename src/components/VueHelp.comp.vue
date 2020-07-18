@@ -1,5 +1,3 @@
-// VueHelp.comp.vue
-//
 <template>
     <div>
         VueHelp.comp.vue
