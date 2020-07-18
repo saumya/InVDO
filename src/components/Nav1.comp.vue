@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
     name: 'Nav_1_Component',
     data: function(){
@@ -25,6 +26,7 @@ export default {
         })
     },
     methods: {
+        ...mapActions([ 'test_api_action' ]),
         onInfoClick(){
             console.log('info')
         },
@@ -37,6 +39,7 @@ export default {
         onSearchClick(){
             console.log('onSearchClick')
             console.log( this.searchString )
+            this.$store.dispatch('test_api_action', this.searchString)
         }
     }
 }
