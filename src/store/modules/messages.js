@@ -7,19 +7,24 @@ const state = {
     info: 'VueX in Action',
     is_busy: false,
     popular:[],
-    trending:[]
+    trending:[],
+    /* Spring - Blender Open Movie */
+    selectedVideoId:'WhWc3b3KhnY'
 }
 
 const getters = {
     getInfoMessage: state=> state.info,
     getWhetherBusy: state=> state.is_busy,
     getPopularList: state=> state.popular,
-    getTrendingList: state=> state.trending
+    getTrendingList: state=> state.trending,
+    getSelectedVideoId: state=> state.selectedVideoId
 }
 
 const actions = {
     update_info_message_action: ({commit} ,newMessage)=>( commit('UPDATE_INFO', newMessage) ),
     update_busy_status_action: ({commit}, newStatus)=>( commit('UPDATE_BUSY_STATUS', newStatus) ),
+    update_selected_videoId_action: ({commit}, newVideoId)=>( commit('UPDATE_SELECTED_VIDEO_ID', newVideoId) ),
+
     test_api_action: ({commit,state},payload)=>{
         console.log('test_api_action : payload', payload)
         console.log('test_api_action : commit', commit)
@@ -73,7 +78,8 @@ const mutations = {
     UPDATE_INFO: (state,message)=>(state.info=message),
     UPDATE_BUSY_STATUS: (state,status)=>(state.is_busy=status),
     UPDATE_POPULAR_LIST: (state,populars)=>(state.popular=populars),
-    UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings)
+    UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings),
+    UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId)
 }
 
 export default {state,getters,actions,mutations}
