@@ -1,4 +1,12 @@
 // utils.js
+//
+// API
+//
+// TODO: further divide TREDNING into categories
+// https://invidio.us/feed/trending
+// https://invidio.us/feed/trending?type=Music&region=US
+// type= Music / News / Gaming / Movies
+// 
 
 const utils = {
     info: "Util : info : 1.0.0",
