@@ -6,6 +6,7 @@
             <p>{{ invidiousUrl }}</p>
             <p>{{ nocookiesUrl }}</p>
 
+            <!--
             <video>
                 <source :src="invidiousUrl" type="video/mp4" />
                 <source :src="nocookiesUrl" type="video/mp4" />
@@ -13,6 +14,27 @@
                 <source :src="invidiousUrl" type="video/webm" />
                 <source :src="nocookiesUrl" type="video/webm" />
             </video>
+
+            <video :src="invidiousUrl"></video>
+            <video width="640" height="480" src="https://archive.org/download/Popeye_forPresident/Popeye_forPresident_512kb.mp4" controls>
+            Sorry, your browser doesn't support HTML5 <code>video</code>, but you can
+            download this video from the <a href="https://archive.org/details/Popeye_forPresident" target="_blank">Internet Archive</a>.
+            </video>
+            -->
+
+            <iframe width="560" height="315" title="Video" 
+                :src="nocookiesUrl"
+                frameborder="0" 
+                allow='autoplay; encrypted-media' 
+                allowfullscreen>
+            </iframe>
+
+            <!--
+            <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/owsfdh4gxyc" 
+                frameborder="0" allowfullscreen>
+                </iframe>
+            -->
 
         </div>
 
