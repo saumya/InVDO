@@ -4,6 +4,7 @@ import Utils from './utils'
 
 
 const state = {
+    app_version: '0.1.0',
     info: 'VueX in Action',
     is_busy: false,
     popular:[],
@@ -13,6 +14,7 @@ const state = {
 }
 
 const getters = {
+    getAppVersion: state=> state.app_version,
     getInfoMessage: state=> state.info,
     getWhetherBusy: state=> state.is_busy,
     getPopularList: state=> state.popular,

@@ -28,7 +28,7 @@
 
             <div class="section" style="height:500px; width:610px; background:#EEE;">
                 <h1 class="title">Video Player</h1>
-                <h2 class="subtitle">The video player version-0.0.1</h2>
+                <h2 class="subtitle">The Youtube player {{getAppVersion}}</h2>
                 <!-- EMBED -->
                 <iframe width="560" height="315" title="Video" style="background:#000;" 
                     :src="nocookiesUrl"
@@ -64,7 +64,7 @@ export default {
     components: { Nav1Comp, TrendingComp, PopularComp },
     computed: {
         ...mapGetters([
-            'getSelectedVideoId'
+            'getAppVersion', 'getSelectedVideoId'
         ]),
         nocookiesUrl: function(){
             const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
