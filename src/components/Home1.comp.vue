@@ -1,33 +1,42 @@
 <template>
     <div>
-        Home1.comp.vue
-        <div>
-
+        
+        <section class="section">
+            <!--
             <p>{{ invidiousUrl }}</p>
             <p>{{ nocookiesUrl }}</p>
-
+            -->
+            <!-- Player -->
             <!--
-            <video>
-                <source :src="invidiousUrl" type="video/mp4" />
-                <source :src="nocookiesUrl" type="video/mp4" />
-
-                <source :src="invidiousUrl" type="video/webm" />
-                <source :src="nocookiesUrl" type="video/webm" />
-            </video>
-
-            <video :src="invidiousUrl"></video>
-            <video width="640" height="480" src="https://archive.org/download/Popeye_forPresident/Popeye_forPresident_512kb.mp4" controls>
-            Sorry, your browser doesn't support HTML5 <code>video</code>, but you can
-            download this video from the <a href="https://archive.org/details/Popeye_forPresident" target="_blank">Internet Archive</a>.
+            <video id='player'>
+                <source v-if='validDash' data-quality='Auto' type="application/dash+xml" :src="videoDash" />
+                <source v-if='validLive' data-quality='Live' type="application/x-mpegURL" :src="videoLive" />
+                <span v-html="subtitleHtml"></span>
+                <track kind="metadata" srclang='' class="time-rail-thumbnails" 
+                    :src="'https://invidio.us/api/v1/storyboards/' + videoId + '?height=90'">
+                </track>
             </video>
             -->
 
-            <iframe width="560" height="315" title="Video" 
-                :src="nocookiesUrl"
-                frameborder="0" 
-                allow='autoplay; encrypted-media' 
-                allowfullscreen>
-            </iframe>
+            <!-- Legacy player -->
+            <!--
+            <video id='legacyPlayer' class='videoPlayer' 
+                :src='nocookiesUrl' 
+                controls="controls">
+            </video>
+            -->
+
+            <div class="section" style="height:500px; width:610px; background:#EEE;">
+                <h1 class="title">Video Player</h1>
+                <h2 class="subtitle">The video player version-0.0.1</h2>
+                <!-- EMBED -->
+                <iframe width="560" height="315" title="Video" style="background:#000;" 
+                    :src="nocookiesUrl"
+                    frameborder="0" 
+                    allow='autoplay; encrypted-media' 
+                    allowfullscreen>
+                </iframe>
+            </div>
 
             <!--
             <iframe width="560" height="315" 
@@ -36,7 +45,7 @@
                 </iframe>
             -->
 
-        </div>
+        </section>
 
         <Nav1Comp />
         <PopularComp />
