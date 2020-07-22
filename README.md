@@ -1,8 +1,12 @@
-# InVDO
-
+InVDO
+=========================
 A Video player for Youtube. 
 
-Made with Vue and Electron for Dektop.
+Made with [Vue][vue] and Electron for Dektop. 
+
+ - [Vue CLI Plugin Electron Builder][2]
+
+Vue CLI Plugin Electron Builder makes it very easy to make any [Vue][vue] application to become a desktop application.
 
 
 
@@ -44,8 +48,13 @@ Lints and fixes files
 npm run lint
 ```
 
-### Customize configuration
+Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+[vue]: https://vuejs.org/
+[2]: https://github.com/nklayman/vue-cli-plugin-electron-builder
 
 
 
