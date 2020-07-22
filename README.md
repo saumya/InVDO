@@ -2,7 +2,7 @@ InVDO
 =========================
 A Video player for Youtube. 
 
-Made with [Vue][vue] and Electron for Dektop. 
+Made with [Vue][vue] and [Electron][3] for Dektop. 
 
  - [Vue CLI Plugin Electron Builder][2]
 
@@ -55,6 +55,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [vue]: https://vuejs.org/
 [2]: https://github.com/nklayman/vue-cli-plugin-electron-builder
+[3]: https://www.electronjs.org
 
 
 
