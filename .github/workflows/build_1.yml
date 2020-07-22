@@ -46,19 +46,19 @@ jobs:
     with:
       name: invdo-0.1.0-amd64.rpm
       path: dist_electron/invdo-0.1.0.x86-64.rpm
-  - name: Upload Web Build
-    uses: actions/upload-artifact@v2
-    if: startsWith(matrix.os, 'ubuntu')
-    with:
-      name: invdo-0.1.0-static-web
-      path: dist/
-  - name: Upload Windows .exe Artifact
+#  - name: Upload Web Build
+#    uses: actions/upload-artifact@v2
+#    if: startsWith(matrix.os, 'ubuntu')
+#    with:
+#      name: invdo-0.1.0-static-web
+#      path: dist/
+  - name: Upload Windows .zip Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
       name: invdo-0.1.0-win-x64-portable
       path: dist_electron/invdo-0.1.0-win.zip
-  - name: Upload Windows .zip Artifact
+  - name: Upload Windows .exe Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
