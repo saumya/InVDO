@@ -122,18 +122,6 @@ const actions = {
         */
        Utils.actions.callTheApiEndpointAction(commit,url)
     },
-    /*
-    // The API call to the Server
-    callTheApiEndpointAction: ( {commit}, url)=>{
-        //console.log(url) :  https://invidio.us/api/v1/trending
-        console.log('callTheApiEndpoint', url)
-        fetch(url).then(success=>{
-            if(success.status == '200'){
-                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
-            }
-        }).catch(error1=>console.log('error:1:',error1))
-    }
-    */
 }
 
 const mutations = {
