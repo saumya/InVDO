@@ -3,6 +3,8 @@
         
         <router-link to="/">Home</router-link> | 
         <!-- <router-link to="/check">Check</router-link> | -->
+        <router-link to="/player">Player</router-link> | 
+        <router-link to="/search">Search</router-link> | 
         <router-link to="/popular">Popular</router-link> | 
         <router-link to="/trending">Trending</router-link> | 
         <router-link to="/about">About</router-link> | 

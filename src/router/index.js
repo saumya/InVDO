@@ -11,6 +11,8 @@ import VueHelpComp from '../components/HelloWorld'
 import TrendingComp from '../components/Trending.comp'
 import PopularComp from '../components/Popular.comp'
 import AboutComp from '../components/About.comp'
+import PlayerComp from '../components/Player.comp'
+import SearchComp from '../components/Search.comp'
 
 
 Vue.use(Router)
@@ -22,6 +24,8 @@ export default new Router({
             component: Home1Comp,
             props: true
         },
+        { path: '/search', component: SearchComp },
+        { path: '/player', component: PlayerComp },
         { path: '/check', component: WelcomeComp },
         { path: '/vue', component: VueHelpComp },
         
