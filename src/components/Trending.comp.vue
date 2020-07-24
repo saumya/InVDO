@@ -29,7 +29,7 @@ export default {
     methods: {
         ...mapActions([ 'onTrendingClick' ]),
         onTrendingClick: function(){
-            this.$store.dispatch('get_trending_action', this.searchString)
+            this.$store.dispatch('get_trending_action')
         }
     }
 }

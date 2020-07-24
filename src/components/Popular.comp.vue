@@ -32,7 +32,7 @@ export default {
     methods: {
         ...mapActions([ 'get_popular_action' ]),
         onPopularClick: function(){
-            this.$store.dispatch('get_popular_action', this.searchString)
+            this.$store.dispatch('get_popular_action')
         }
     }
 }
