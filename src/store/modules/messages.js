@@ -65,7 +65,7 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
         */
-        utilObj.callTheApiEndpointAction(commit,url)
+        Utils.actions.callTheApiEndpointAction(commit, url)
     },
     get_trending_action: ({commit})=>{
         const url = Utils.api.endpoint + Utils.api.trending
@@ -76,7 +76,7 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
         */
-        utilObj.callTheApiEndpointAction(commit,url)
+        Utils.actions.callTheApiEndpointAction(commit,url)
     },
     trending_by_music_action: ({commit})=>{
         const url = Utils.api.endpoint + Utils.api.trending + '/?type=Music'
@@ -87,7 +87,7 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
         */
-        utilObj.callTheApiEndpointAction(commit,url)
+        Utils.actions.callTheApiEndpointAction(commit,url)
     },
     trending_by_movies_action: ({commit})=>{
         const url = Utils.api.endpoint + Utils.api.trending + '/?type=Movies'
@@ -98,7 +98,7 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
         */
-       utilObj.callTheApiEndpointAction(commit,url)
+       Utils.actions.callTheApiEndpointAction(commit,url)
     },
     trending_by_gaming_action: ({commit})=>{
         const url = Utils.api.endpoint + Utils.api.trending + '/?type=Gaming'
@@ -109,7 +109,7 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
         */
-       utilObj.callTheApiEndpointAction(commit,url)
+       Utils.actions.callTheApiEndpointAction(commit,url)
     },
     trending_by_news_action: ({commit})=>{
         const url = Utils.api.endpoint + Utils.api.trending + '/?type=News'
@@ -120,7 +120,7 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
         */
-       utilObj.callTheApiEndpointAction(commit,url)
+       Utils.actions.callTheApiEndpointAction(commit,url)
     },
     /*
     // The API call to the Server
@@ -142,20 +142,6 @@ const mutations = {
     UPDATE_POPULAR_LIST: (state,populars)=>(state.popular=populars),
     UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings),
     UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId)
-}
-
-//
-const utilObj = {
-    // The API call to the Server
-    callTheApiEndpointAction: (commit, url)=>{
-        //console.log(url) :  https://invidio.us/api/v1/trending
-        console.log('callTheApiEndpoint', url)
-        fetch(url).then(success=>{
-            if(success.status == '200'){
-                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
-            }
-        }).catch(error1=>console.log('error:1:',error1))
-    }
 }
 //
 export default {state,getters,actions,mutations}

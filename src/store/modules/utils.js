@@ -42,6 +42,17 @@ const utils = {
         channel_playlists: '/channels/playlists/',
         channel_latest: '/channels/latest/',
         channel_videos: '/channels/videos/',
+    },
+    actions:{
+        callTheApiEndpointAction: (commit, url)=>{
+            //console.log(url) :  https://invidio.us/api/v1/trending
+            console.log('callTheApiEndpoint', url)
+            fetch(url).then(success=>{
+                if(success.status == '200'){
+                    success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+                }
+            }).catch(error1=>console.log('error:1:',error1))
+        }
     }
 }
 
