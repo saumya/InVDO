@@ -6,6 +6,12 @@
   "version": "0.1.0",
   "private": true,
 
+  "productName": "InVDO",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saumya/InVDO.git"
+  },
+
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

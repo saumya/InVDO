@@ -1,5 +1,9 @@
 <template>
     <section class="section">
+        <p class="control"> 
+            <button class="button" v-on:click="onTrendingClick"> Get Now </button> 
+        </p>
+
         <h1 class="title">Trending : {{getTrendingList.length}}</h1>
         {{/* JSON.stringify(getTrendingList) */}}
         
@@ -12,7 +16,7 @@
     </section>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import TrendingListItem from './TrendingListItem.comp'
 
 export default {
@@ -21,6 +25,12 @@ export default {
     data: ()=>({}),
     computed: {
         ...mapGetters(['getTrendingList'])
+    },
+    methods: {
+        ...mapActions([ 'onTrendingClick' ]),
+        onTrendingClick: function(){
+            this.$store.dispatch('get_trending_action', this.searchString)
+        }
     }
 }
 </script>
