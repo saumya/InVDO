@@ -57,15 +57,14 @@ const actions = {
     get_popular_action: ({commit})=>{
         console.log('get_popular_action : ')
         const url = Utils.api.endpoint + Utils.api.popular
-        /*
+        
         console.log(url)
         fetch(url).then(success=>{
             if(success.status == '200'){
                 success.json().then(result=>commit('UPDATE_POPULAR_LIST', result),error2=>console.log('error:2:',error2))
             }
         }).catch(error1=>console.log('error:1:',error1))
-        */
-        Utils.actions.callTheApiEndpointAction(commit, url)
+        
     },
     get_trending_action: ({commit})=>{
         const url = Utils.api.endpoint + Utils.api.trending
