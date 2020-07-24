@@ -9,6 +9,7 @@ const state = {
     is_busy: false,
     popular:[],
     trending:[],
+    search_list:[],
     /* Spring - Blender Open Movie */
     selectedVideoId:'WhWc3b3KhnY'
 }
@@ -19,6 +20,7 @@ const getters = {
     getWhetherBusy: state=> state.is_busy,
     getPopularList: state=> state.popular,
     getTrendingList: state=> state.trending,
+    getSearchList: state=> state.search_list,
     getSelectedVideoId: state=> state.selectedVideoId
 }
 
@@ -121,6 +123,16 @@ const actions = {
         */
        Utils.actions.callTheApiEndpointAction(commit,url)
     },
+    search_video_action: ({commit}, payload)=>{
+        console.log('search_video_action : payload', payload)
+        
+        const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_SEARCH_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+    },
 }
 
 const mutations = {
@@ -128,6 +140,7 @@ const mutations = {
     UPDATE_BUSY_STATUS: (state,status)=>(state.is_busy=status),
     UPDATE_POPULAR_LIST: (state,populars)=>(state.popular=populars),
     UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings),
+    UPDATE_SEARCH_LIST: (state, searches)=>(state.search_list=searches),
     UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId)
 }
 //

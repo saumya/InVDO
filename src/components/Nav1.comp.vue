@@ -1,19 +1,20 @@
 <template>
     <div>
-        
+        <!--
         <div class="field has-addons">
             <p class="control"> <button class="button" v-on:click="onInfoClick">Info</button> </p>
             <p class="control"> <button class="button" v-on:click="onPopularClick">Popular</button> </p>
             <p class="control"> <button class="button" v-on:click="onTrendingClick">Trending</button> </p>
-            <!-- <p class="control"> <button class="button" v-on:click="onTopClick">Top</button> </p> -->
+            <p class="control"> <button class="button" v-on:click="onTopClick">Top</button> </p>
         </div>
+        -->
         <div class="field has-addons">
             <p class="control">
                 <input class="input" type="text" placeholder="Video" v-model="searchString" />
             </p>
             <p class="control"> <button class="button" v-on:click="onSearchClick">Search Video</button> </p>
         </div>
-        {{ getInfoMessage }}
+        
         
     </div>
 </template>
@@ -29,11 +30,11 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getInfoMessage'
+            'getInfoMessage', 'getSearchList'
         ])
     },
     methods: {
-        ...mapActions([ 'get_info_action', 'test_api_action' ]),
+        ...mapActions([ 'get_info_action', 'test_api_action', 'search_video_action' ]),
         onInfoClick(){
             console.log('info')
             this.$store.dispatch('get_info_action', this.searchString)
@@ -51,9 +52,9 @@ export default {
             this.$store.dispatch('get_top_action', this.searchString)
         },
         onSearchClick(){
-            console.log('onSearchClick')
-            console.log( this.searchString )
-            
+            //console.log('onSearchClick', this.searchString)
+            //console.log( this.searchString )
+            this.$store.dispatch('search_video_action', this.searchString)
         }
     }
 }

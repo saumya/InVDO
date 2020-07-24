@@ -10,9 +10,10 @@
 
             <div>{{itemData.type}} - {{itemData.lengthSeconds}} secs</div>
             <div>Author - {{itemData.author}}</div>
+            <!--
             <div>Author id - {{itemData.authorId}}</div>
             <div>Author url - {{itemData.authorUrl}}</div>
-
+            -->
             <div>liveNow - {{itemData.liveNow}}</div>
             <div>paid - {{itemData.paid}}</div>
             <div>premium - {{itemData.premium}}</div>
