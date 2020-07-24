@@ -3,6 +3,7 @@
 #
 
 name: GitHubBuild
+version: &version 0.2.0
 
 on:
  push:
@@ -80,8 +81,8 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
-      name: InVDO-0.2.0-setup-x64.exe
-      path: dist_electron/invdo Setup 0.2.0.exe
+      name: InVDO-*version-setup-x64.exe
+      path: dist_electron/invdo Setup *version.exe
 # MAC ----------------------------------------------
   - name: Upload Mac .zip Artifact
     uses: actions/upload-artifact@v2
