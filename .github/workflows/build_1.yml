@@ -35,20 +35,29 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
-      name: invdo-0.1.0-amd64.deb
-      path: dist_electron/invdo-0.1.0-amd64.deb
-  - name: Upload AppImage Artifact
-    uses: actions/upload-artifact@v2
-    if: startsWith(matrix.os, 'ubuntu')
-    with:
-      name: invdo-0.1.0-amd64.AppImage
-      path: dist_electron/invdo-0.1.0.AppImage
+      name: invdo-0.2.0-amd64.deb
+      path: dist_electron/invdo-0.2.0-amd64.deb
   - name: Upload .rpm Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
-      name: invdo-0.1.0-amd64.rpm
-      path: dist_electron/invdo-0.1.0.x86-64.rpm
+      name: invdo-0.2.0-amd64.rpm
+      path: dist_electron/invdo-0.2.0.x86-64.rpm
+
+  - name: Upload AppImage Artifact
+    uses: actions/upload-artifact@v2
+    if: startsWith(matrix.os, 'ubuntu')
+    with:
+      name: InVDO-0.2.0.AppImage
+      path: dist_electron/InVDO-0.2.0.AppImage
+
+  - name: Upload .snap Artifact
+    uses: actions/upload-artifact@v2
+    if: startsWith(matrix.os, 'ubuntu')
+    with:
+      name: invdo_0.2.0_amd64.snap
+      path: dist_electron/invdo_0.2.0_amd64.snap
+  
 #  - name: Upload Web Build
 #    uses: actions/upload-artifact@v2
 #    if: startsWith(matrix.os, 'ubuntu')
@@ -59,17 +68,17 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
-      name: invdo-0.1.0-win-x64-portable
-      path: dist_electron/invdo-0.1.0-win.zip
+      name: invdo-0.2.0-win-x64-portable
+      path: dist_electron/invdo-0.2.0-win.zip
   - name: Upload Windows .exe Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
-      name: invdo-0.1.0-setup-x64.exe
-      path: dist_electron/invdo Setup 0.1.0.exe
+      name: invdo-0.2.0-setup-x64.exe
+      path: dist_electron/invdo Setup 0.2.0.exe
   - name: Upload Mac .dmg Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'macos')
     with:
-      name: invdo-0.1.0-mac.dmg
-      path: dist_electron/invdo-0.1.0.dmg
+      name: invdo-0.2.0-mac.dmg
+      path: dist_electron/invdo-0.2.0.dmg
