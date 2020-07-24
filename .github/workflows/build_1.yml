@@ -80,7 +80,7 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
-      name: invdo-0.2.0-setup-x64.exe
+      name: InVDO-0.2.0-setup-x64.exe
       path: dist_electron/invdo Setup 0.2.0.exe
 # MAC ----------------------------------------------
   - name: Upload Mac .zip Artifact
