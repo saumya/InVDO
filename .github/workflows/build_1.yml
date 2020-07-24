@@ -30,13 +30,16 @@ jobs:
 #  - run: npm run build --if-present
   - name: Build with Electron
     run: npm run electron:build
+
 # Uploading the respective builds
+# Linux -----------------------------------------
   - name: Upload .deb Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
       name: invdo-0.2.0-amd64.deb
       path: dist_electron/invdo-0.2.0-amd64.deb
+
   - name: Upload .rpm Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
@@ -64,21 +67,32 @@ jobs:
 #    with:
 #      name: invdo-0.1.0-static-web
 #      path: dist/
+
+# Windows -----------------------------------------
   - name: Upload Windows .zip Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
       name: invdo-0.2.0-win-x64-portable
       path: dist_electron/invdo-0.2.0-win.zip
+
   - name: Upload Windows .exe Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
       name: invdo-0.2.0-setup-x64.exe
       path: dist_electron/invdo Setup 0.2.0.exe
+# MAC ----------------------------------------------
+  - name: Upload Mac .zip Artifact
+    uses: actions/upload-artifact@v2
+    if: startsWith(matrix.os, 'macos')
+    with:
+      name: InVDO-0.2.0-mac.zip
+      path: dist_electron/InVDO-0.2.0-mac.zip
+
   - name: Upload Mac .dmg Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'macos')
     with:
-      name: invdo-0.2.0-mac.dmg
-      path: dist_electron/invdo-0.2.0.dmg
+      name: InVDO-0.2.0.dmg
+      path: dist_electron/InVDO-0.2.0.dmg
