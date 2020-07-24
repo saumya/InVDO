@@ -57,23 +57,83 @@ const actions = {
     get_popular_action: ({commit})=>{
         console.log('get_popular_action : ')
         const url = Utils.api.endpoint + Utils.api.popular
+        /*
         console.log(url)
         fetch(url).then(success=>{
             if(success.status == '200'){
                 success.json().then(result=>commit('UPDATE_POPULAR_LIST', result),error2=>console.log('error:2:',error2))
             }
         }).catch(error1=>console.log('error:1:',error1))
+        */
+        utilObj.callTheApiEndpointAction(commit,url)
     },
     get_trending_action: ({commit})=>{
-        console.log('get_trending_action : ')
         const url = Utils.api.endpoint + Utils.api.trending
-        console.log(url)
+        /*
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+        */
+        utilObj.callTheApiEndpointAction(commit,url)
+    },
+    trending_by_music_action: ({commit})=>{
+        const url = Utils.api.endpoint + Utils.api.trending + '/?type=Music'
+        /*
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+        */
+        utilObj.callTheApiEndpointAction(commit,url)
+    },
+    trending_by_movies_action: ({commit})=>{
+        const url = Utils.api.endpoint + Utils.api.trending + '/?type=Movies'
+        /*
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+        */
+       utilObj.callTheApiEndpointAction(commit,url)
+    },
+    trending_by_gaming_action: ({commit})=>{
+        const url = Utils.api.endpoint + Utils.api.trending + '/?type=Gaming'
+        /*
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+        */
+       utilObj.callTheApiEndpointAction(commit,url)
+    },
+    trending_by_news_action: ({commit})=>{
+        const url = Utils.api.endpoint + Utils.api.trending + '/?type=News'
+        /*
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+        */
+       utilObj.callTheApiEndpointAction(commit,url)
+    },
+    /*
+    // The API call to the Server
+    callTheApiEndpointAction: ( {commit}, url)=>{
+        //console.log(url) :  https://invidio.us/api/v1/trending
+        console.log('callTheApiEndpoint', url)
         fetch(url).then(success=>{
             if(success.status == '200'){
                 success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
             }
         }).catch(error1=>console.log('error:1:',error1))
     }
+    */
 }
 
 const mutations = {
@@ -84,4 +144,18 @@ const mutations = {
     UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId)
 }
 
+//
+const utilObj = {
+    // The API call to the Server
+    callTheApiEndpointAction: (commit, url)=>{
+        //console.log(url) :  https://invidio.us/api/v1/trending
+        console.log('callTheApiEndpoint', url)
+        fetch(url).then(success=>{
+            if(success.status == '200'){
+                success.json().then(result=>commit('UPDATE_TRENDING_LIST', result),error2=>console.log('error:2:',error2))
+            }
+        }).catch(error1=>console.log('error:1:',error1))
+    }
+}
+//
 export default {state,getters,actions,mutations}

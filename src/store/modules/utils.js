@@ -4,9 +4,13 @@
 //
 // TODO: further divide TREDNING into categories
 // https://invidio.us/feed/trending
-// https://invidio.us/feed/trending?type=Music&region=US
+// https://invidio.us/feed/trending?type=Music&region=GB
 // type= Music / News / Gaming / Movies
+// by Region : https://invidio.us/api/v1/trending/?region=GB
 // 
+// ultimately: googlevideo.com
+// 
+//
 
 const utils = {
     info: "Util : info : 1.0.0",

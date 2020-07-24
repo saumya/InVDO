@@ -1,8 +1,15 @@
 <template>
     <section class="section">
-        <p class="control"> 
-            <button class="button" v-on:click="onTrendingClick"> Get Now </button> 
-        </p>
+        
+        <div class="field has-addons">
+            <p class="control"> <button class="button" v-on:click="onTrendingClick">Default</button> </p>
+
+            <p class="control"> <button class="button" v-on:click="onMusicClick">Music</button> </p>
+            <p class="control"> <button class="button" v-on:click="onMoviesClick">Movies</button> </p>
+            <p class="control"> <button class="button" v-on:click="onGamingClick">Gaming</button> </p>
+            <p class="control"> <button class="button" v-on:click="onNewsClick">News</button> </p>
+            <!-- <p class="control"> <button class="button" v-on:click="onTopClick">Top</button> </p> -->
+        </div>
 
         <h1 class="title">Trending : {{getTrendingList.length}}</h1>
         {{/* JSON.stringify(getTrendingList) */}}
@@ -27,9 +34,24 @@ export default {
         ...mapGetters(['getTrendingList'])
     },
     methods: {
-        ...mapActions([ 'onTrendingClick' ]),
+        ...mapActions([ 
+            'get_trending_action', 'trending_by_music_action', 
+            'trending_by_movies_action', 'trending_by_gaming_action', 'trending_by_news_action' 
+        ]),
         onTrendingClick: function(){
             this.$store.dispatch('get_trending_action')
+        },
+        onMusicClick: function(){
+            this.$store.dispatch('trending_by_music_action')
+        },
+        onMoviesClick: function(){
+            this.$store.dispatch('trending_by_movies_action')
+        },
+        onGamingClick: function(){
+            this.$store.dispatch('trending_by_gaming_action')
+        },
+        onNewsClick: function(){
+            this.$store.dispatch('trending_by_news_action')
         }
     }
 }
