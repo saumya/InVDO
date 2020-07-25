@@ -3,8 +3,9 @@
         <div class="notification">
             {{/* JSON.stringify(itemData) */}}
 
-            <div>Video id - {{itemData.videoId}}</div>
-            <div>Video - <strong>{{itemData.title}}</strong> </div>
+            <!-- <div>Video id - {{itemData.videoId}}</div> -->
+            <!-- <div>Video - <strong>{{itemData.title}}</strong> </div>-->
+            <div> <strong>{{itemData.title}}</strong> </div>
                 
             <div>View Count- {{itemData.viewCount}} | Published- {{itemData.publishedText}}</div>
 

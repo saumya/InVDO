@@ -3,18 +3,21 @@
         <section class="section">
             <ul id="popular_list" style="height:300px; overflow:scroll">
                 <li v-for="(item,index) in getSearchList" :key="index">
-                    <div class="mb-4">
+                    <div class="mb-4" style="background:#eee; padding:1em">
                         <div><strong>{{ item.title }}</strong></div>
+                        <div> Author- <strong>{{ item.author }}</strong> </div>
+                        <div> ViewCount-{{item.viewCount}} </div>
+                        <div> LiveNow-{{item.liveNow?"Yes":"No"}}, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div>
                         <div>{{ item.description }}</div>
                         <!--<div>{{ item.descriptionHtml }}</div>-->
 
-                        <div>Video Id-{{ item.videoId }}</div>
-                        <div>Author-<strong>{{ item.author }}</strong></div>
-                        <div>Author Id-{{ item.authorId }}</div>
-                        <div>Author URL-{{ item.authorUrl }}</div>
-                        <div> ViewCount-{{item.viewCount}} </div>
+                        <!-- <div>Video Id-{{ item.videoId }}</div> -->
+                        <!-- <div>Author-<strong>{{ item.author }}</strong></div> -->
+                        <!-- <div>Author Id-{{ item.authorId }}</div> -->
+                        <!-- <div>Author URL-{{ item.authorUrl }}</div> -->
+                        <!-- <div> ViewCount-{{item.viewCount}} </div> -->
 
-                        <div> LiveNow-{{item.liveNow?"Yes":"No"}}, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div>
+                        <!-- <div> LiveNow-{{item.liveNow?"Yes":"No"}}, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div> -->
                         
                         <div class="buttons has-addons">
                             <button class="button" v-on:click="onViewVideoClick(item.videoId)"> Play </button>
