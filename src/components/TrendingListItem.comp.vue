@@ -9,15 +9,17 @@
             <div>View Count- {{itemData.viewCount}} | Published- {{itemData.publishedText}}</div>
 
             <div>{{itemData.type}} - {{itemData.lengthSeconds}} secs</div>
-            <div>Author - {{itemData.author}}</div>
+            <div>Author - <strong>{{itemData.author}}</strong></div>
             <!--
             <div>Author id - {{itemData.authorId}}</div>
             <div>Author url - {{itemData.authorUrl}}</div>
             -->
-            <div>liveNow - {{itemData.liveNow}}</div>
-            <div>paid - {{itemData.paid}}</div>
-            <div>premium - {{itemData.premium}}</div>
-            <div>isUpcoming - {{itemData.isUpcoming}}</div>
+            <div>
+                <span>LiveNow - {{itemData.liveNow?"Yes":"No"}}</span> | 
+                <span>Paid - {{itemData.paid?"Yes":"No"}}</span> | 
+                <span>Premium - {{itemData.premium?"Yes":"No"}}</span> | 
+                <span>Is Upcoming - {{itemData.isUpcoming?"Yes":"No"}}</span>
+            </div>
 
             <div>Description - {{itemData.description}}</div>
             <!-- <div>DHTML - {{itemData.descriptionHtml}}</div> -->
