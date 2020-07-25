@@ -45,6 +45,9 @@
         -->
 
         </section>
+        <div>
+            Movie Details
+        </div>
     </section>
 </template>
 <script>
