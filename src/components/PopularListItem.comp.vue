@@ -13,7 +13,7 @@
             <!-- <div>Author url - {{itemData.authorUrl}}</div> -->
 
             <div class="buttons has-addons">
-                <button class="button" v-on:click="onViewVideoClick(itemData.videoId)"> Vdo </button>
+                <button class="button" v-on:click="onViewVideoClick(itemData)"> Vdo </button>
                 <button class="button" v-on:click="onViewAuthorClick(itemData.authorId)"> Author </button> 
                 <button class="button" v-on:click="onViewChannelClick(itemData.authorUrl)"> Channel </button>
             </div>
@@ -30,20 +30,20 @@ export default {
         itemData: {}
     },
     methods:{
-        ...mapActions([ 'update_selected_videoId_action' ]),
-        onViewVideoClick: function(videoId){
-            console.log('onViewVideoClick : videoId :', videoId)
+        ...mapActions([ 'update_selected_video_action' ]),
+        onViewVideoClick: function(video){
+            //console.log('onViewVideoClick : videoId :', video)
             // https://invidio.us/watch?v=0b_eHBZLM6U
-            const url_inv = 'https://invidio.us/watch?v=' + videoId
+            //const url_inv = 'https://invidio.us/watch?v=' + videoId
             // https://www.youtube-nocookie.com/embed/sRrqF8eXs38
-            const url_noc = 'https://www.youtube-nocookie.com/embed/' + videoId
+            //const url_noc = 'https://www.youtube-nocookie.com/embed/' + videoId
 
-            console.log('invidious:', url_inv)
-            console.log('nocookie:', url_noc)
+            //console.log('invidious:', url_inv)
+            //console.log('nocookie:', url_noc)
 
             //update_selected_videoId_action
-            this.$store.dispatch( 'update_selected_videoId_action', videoId )
-
+            this.$store.dispatch( 'update_selected_video_action', video )
+            this.$router.push('player')
         },
         onViewAuthorClick: function(authorId){
             console.log('onViewAuthorClick : authorId :', authorId)

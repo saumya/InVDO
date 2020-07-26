@@ -25,7 +25,7 @@
             <div>Description - {{itemData.description}}</div>
             <!-- <div>DHTML - {{itemData.descriptionHtml}}</div> -->
             <div class="buttons has-addons">
-                <button class="button" v-on:click="onViewVideoClick(itemData.videoId)"> Vdo </button>
+                <button class="button" v-on:click="onViewVideoClick(itemData)"> Vdo </button>
                 <button class="button" v-on:click="onViewAuthorClick(itemData.authorId)"> Author </button> 
                 <button class="button" v-on:click="onViewChannelClick(itemData.authorUrl)"> Channel </button>
             </div>
@@ -34,16 +34,20 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
     name: 'TrendingListItemCompoment',
     props: {
         itemData: {}
     },
     methods:{
-        onViewVideoClick: function(videoId){
+        ...mapActions([ 'update_selected_video_action' ]),
+        onViewVideoClick: function(video){
             //const url_inv = 'https://invidio.us/watch?v=' + videoId
             //const url_noc = 'https://www.youtube-nocookie.com/embed/' + videoId
-            this.$store.dispatch( 'update_selected_videoId_action', videoId )
+            //this.$store.dispatch( 'update_selected_videoId_action', videoId )
+            this.$store.dispatch( 'update_selected_video_action', video )
+            this.$router.push('player')
         },
         onViewAuthorClick: function(authorId){
             console.log('onViewAuthorClick : authorId :', authorId)

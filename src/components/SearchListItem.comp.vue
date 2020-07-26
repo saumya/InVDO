@@ -42,7 +42,7 @@ export default {
         ])
     },
     methods:{
-        ...mapActions([ 'update_selected_videoId_action' ]),
+        ...mapActions([ 'update_selected_video_action' ]),
         onViewVideoClick: function(video){
             this.$store.dispatch( 'update_selected_video_action', video )
             this.$router.push('player')
