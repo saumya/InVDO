@@ -1,6 +1,6 @@
 <template>
     <section class="section">
-        <section class="section">
+        <div>
         <!--
         <p>{{ invidiousUrl }}</p>
         <p>{{ nocookiesUrl }}</p>
@@ -25,9 +25,11 @@
         </video>
         -->
 
-        <div class="section" style="height:500px; width:610px; background:#EEE;">
+        <div style="padding:10px; width:580px; height:335px; background:#EEE;">
+            <!--
             <h1 class="title">Video Player</h1>
             <h2 class="subtitle">The Youtube player {{getAppVersion}}</h2>
+            -->
             <!-- EMBED -->
             <iframe width="560" height="315" title="Video" style="background:#000;" 
                 :src="nocookiesUrl"
@@ -44,8 +46,8 @@
             </iframe>
         -->
 
-        </section>
-        <section>
+        </div>
+        <div>
             <div> {{getSelectedVideo.title}}</div>
             <div> By- {{getSelectedVideo.author}}</div>
             <div>
@@ -64,7 +66,7 @@
                 {{getSelectedVideo.description}}
             </div>
             
-        </section>
+        </div>
         
     </section>
 </template>
