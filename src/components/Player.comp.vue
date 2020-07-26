@@ -53,7 +53,7 @@
             <div>
                 <span>Views- <strong>{{getSelectedVideo.viewCount}}</strong> </span> |
                 <span>Published- <strong>{{getSelectedVideo.publishedText}}</strong> </span> | 
-                <span>Length- <strong>{{ Math.round(getSelectedVideo.lengthSeconds/60) }} secs</strong> </span>
+                <span>Length- <strong>{{ (getSelectedVideo.lengthSeconds) }} secs</strong> </span>
             </div>
             <div>
                 <span>Live- <strong>{{getSelectedVideo.liveNow?"Yes":"No"}}</strong> </span> |
