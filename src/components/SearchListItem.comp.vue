@@ -20,7 +20,7 @@
                         <!-- <div> LiveNow-{{item.liveNow?"Yes":"No"}}, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div> -->
                         
                         <div class="buttons has-addons">
-                            <button class="button" v-on:click="onViewVideoClick(item.videoId)"> Play </button>
+                            <button class="button" v-on:click="onViewVideoClick(item)"> Play </button>
                             <button class="button" v-on:click="onViewAuthorClick(item.authorId)"> Author </button> 
                             <button class="button" v-on:click="onViewChannelClick(item.authorUrl)"> Channel </button>
                         </div>
@@ -43,10 +43,16 @@ export default {
     },
     methods:{
         ...mapActions([ 'update_selected_videoId_action' ]),
+        onViewVideoClick: function(video){
+            this.$store.dispatch( 'update_selected_video_action', video )
+            this.$router.push('player')
+        },
+        /*
         onViewVideoClick: function(videoId){
             this.$store.dispatch( 'update_selected_videoId_action', videoId )
             this.$router.push('player')
         },
+        */
         onViewAuthorClick: function(authorId){
             console.log('onViewAuthorClick : authorId :', authorId)
         },

@@ -45,9 +45,27 @@
         -->
 
         </section>
-        <div>
-            Movie Details
-        </div>
+        <section>
+            <div> {{getSelectedVideo.title}}</div>
+            <div> By- {{getSelectedVideo.author}}</div>
+            <div>
+                <span>Views- <strong>{{getSelectedVideo.viewCount}}</strong> </span> |
+                <span>Published- <strong>{{getSelectedVideo.publishedText}}</strong> </span> | 
+                <span>Length- <strong>{{ Math.round(getSelectedVideo.lengthSeconds/60) }} secs</strong> </span>
+            </div>
+            <div>
+                <span>Live- <strong>{{getSelectedVideo.liveNow?"Yes":"No"}}</strong> </span> |
+                <span>Paid- <strong>{{getSelectedVideo.paid?"Yes":"No"}}</strong> </span> | 
+                <span>Premium- <strong>{{getSelectedVideo.premium?"Yes":"No"}}</strong> </span> | 
+                <span>Upcoming- <strong>{{getSelectedVideo.isUpcoming?"Yes":"No"}}</strong> </span>
+            </div>
+            
+            <div style="padding:1em;">
+                {{getSelectedVideo.description}}
+            </div>
+            
+        </section>
+        
     </section>
 </template>
 <script>
@@ -56,13 +74,14 @@ export default {
     name: 'PlayerComponent',
     computed: {
         ...mapGetters([
-            'getAppVersion', 'getSelectedVideoId'
+            'getAppVersion', 'getSelectedVideoId', 'getSelectedVideo'
         ]),
         nocookiesUrl: function(){
-            const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
+            //const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
+            const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideo.videoId)
             return url
         },
-        invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.getSelectedVideoId) } 
+        invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.getSelectedVideo.videoId) } 
     }
 }
 </script>

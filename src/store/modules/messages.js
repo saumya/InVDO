@@ -11,7 +11,10 @@ const state = {
     trending:[],
     search_list:[],
     /* Spring - Blender Open Movie */
-    selectedVideoId:'WhWc3b3KhnY'
+    /* selectedVideoId:'WhWc3b3KhnY', */
+    selectedVideoData:{
+        videoId: "WhWc3b3KhnY"
+    }
 }
 
 const getters = {
@@ -21,13 +24,15 @@ const getters = {
     getPopularList: state=> state.popular,
     getTrendingList: state=> state.trending,
     getSearchList: state=> state.search_list,
-    getSelectedVideoId: state=> state.selectedVideoId
+    //getSelectedVideoId: state=> state.selectedVideoId,
+    getSelectedVideo: state=> state.selectedVideoData
 }
 
 const actions = {
     update_info_message_action: ({commit} ,newMessage)=>( commit('UPDATE_INFO', newMessage) ),
     update_busy_status_action: ({commit}, newStatus)=>( commit('UPDATE_BUSY_STATUS', newStatus) ),
-    update_selected_videoId_action: ({commit}, newVideoId)=>( commit('UPDATE_SELECTED_VIDEO_ID', newVideoId) ),
+    //update_selected_videoId_action: ({commit}, newVideoId)=>( commit('UPDATE_SELECTED_VIDEO_ID', newVideoId) ),
+    update_selected_video_action: ({commit}, newVideo)=>( commit('UPDATE_SELECTED_VIDEO', newVideo) ),
 
     test_api_action: ({commit,state},payload)=>{
         console.log('test_api_action : payload', payload)
@@ -141,7 +146,8 @@ const mutations = {
     UPDATE_POPULAR_LIST: (state,populars)=>(state.popular=populars),
     UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings),
     UPDATE_SEARCH_LIST: (state, searches)=>(state.search_list=searches),
-    UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId)
+    //UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId),
+    UPDATE_SELECTED_VIDEO: (state, video)=>(state.selectedVideoData=video)
 }
 //
 export default {state,getters,actions,mutations}
