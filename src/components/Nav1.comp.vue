@@ -24,38 +24,51 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'Nav_1_Component',
     data: function(){
+        // 'Michael Jackson - They Don't Care About Us (Prison Version) (Official Video)'
         return({
-            searchString:'video'
+            searchString : 'Its My Life Dr. Alban'
         })
     },
     computed: {
-        ...mapGetters([
-            'getInfoMessage', 'getSearchList'
-        ])
+        ...mapGetters({
+            info : 'messages/getInfoMessage', 
+            searchedList : 'messages/getSearchList'
+        })
     },
     methods: {
-        ...mapActions([ 'get_info_action', 'test_api_action', 'search_video_action' ]),
+        ...mapActions({ 
+            getTestInfo : 'messages/test_api_action', 
+
+            getInfo : 'messages/get_info_action', 
+            searchVideo : 'messages/search_video_action',
+            
+            popularVideoAction : 'messages/get_popular_action', 
+            trendingVideoAction : 'messages/get_trending_action', 
+            topVideoAction : 'messages/get_top_action' 
+        }),
         onInfoClick(){
-            console.log('info')
-            this.$store.dispatch('get_info_action', this.searchString)
-        },
-        onPopularClick(){
-            console.log('popular')
-            this.$store.dispatch('get_popular_action', this.searchString)
-        },
-        onTrendingClick(){
-            console.log('Trending')
-            this.$store.dispatch('get_trending_action', this.searchString)
-        },
-        onTopClick(){
-            console.log('onTopClick')
-            this.$store.dispatch('get_top_action', this.searchString)
+            //this.$store.dispatch('messages/get_info_action', this.searchString)
+            this.getInfo( this.searchString )
         },
         onSearchClick(){
             //console.log('onSearchClick', this.searchString)
             //console.log( this.searchString )
-            this.$store.dispatch('search_video_action', this.searchString)
-        }
+            
+            //this.$store.dispatch('messages/search_video_action', this.searchString)
+            this.searchVideo( this.searchString )
+        },
+        onPopularClick(){
+            //this.$store.dispatch('messages/get_popular_action', this.searchString)
+            this.popularVideoAction()
+        },
+        onTrendingClick(){
+            //this.$store.dispatch('messages/get_trending_action', this.searchString)
+            this.trendingVideoAction()
+        },
+        onTopClick(){
+            //this.$store.dispatch('messages/get_top_action', this.searchString)
+            this.topVideoAction()
+        },
     }
 }
 </script>

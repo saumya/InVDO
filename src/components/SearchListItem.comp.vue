@@ -2,7 +2,7 @@
     <div>
         <section class="section">
             <ul id="popular_list" style="height:300px; overflow:scroll">
-                <li v-for="(item,index) in getSearchList" :key="index">
+                <li v-for="(item,index) in searchedList" :key="index">
                     <div class="mb-4" style="background:#eee; padding:1em">
                         <div><strong>{{ item.title }}</strong></div>
                         <div> Author- <strong>{{ item.author }}</strong> </div>
@@ -37,14 +37,17 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'SearchListItemComponent',
     computed: {
-        ...mapGetters([
-            'getSearchList'
-        ])
+        ...mapGetters({
+            searchedList : 'messages/getSearchList'
+        })
     },
     methods:{
-        ...mapActions([ 'update_selected_video_action' ]),
+        ...mapActions({ 
+            updateSelectedVideo : 'messages/update_selected_video_action' 
+        }),
         onViewVideoClick: function(video){
-            this.$store.dispatch( 'update_selected_video_action', video )
+            //this.$store.dispatch( 'messages/update_selected_video_action', video )
+            this.updateSelectedVideo(video)
             this.$router.push('player')
         },
         /*

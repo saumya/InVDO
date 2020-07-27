@@ -11,11 +11,11 @@
             <!-- <p class="control"> <button class="button" v-on:click="onTopClick">Top</button> </p> -->
         </div>
 
-        <h1 class="title">Trending : {{getTrendingList.length}}</h1>
+        <h1 class="title">Trending : {{trendingLsit.length}}</h1>
         {{/* JSON.stringify(getTrendingList) */}}
         
         <ul id="popular_list" style="height:300px; overflow:scroll">
-            <li v-for="(item,index) in getTrendingList" :key="index">
+            <li v-for="(item,index) in trendingLsit" :key="index">
                 <TrendingListItem :itemData="item"  />
             </li>
         </ul>
@@ -31,28 +31,23 @@ export default {
     components: { TrendingListItem },
     data: ()=>({}),
     computed: {
-        ...mapGetters(['getTrendingList'])
+        ...mapGetters({ 
+            trendingLsit : 'messages/getTrendingList'
+        })
     },
     methods: {
-        ...mapActions([ 
-            'get_trending_action', 'trending_by_music_action', 
-            'trending_by_movies_action', 'trending_by_gaming_action', 'trending_by_news_action' 
-        ]),
-        onTrendingClick: function(){
-            this.$store.dispatch('get_trending_action')
-        },
-        onMusicClick: function(){
-            this.$store.dispatch('trending_by_music_action')
-        },
-        onMoviesClick: function(){
-            this.$store.dispatch('trending_by_movies_action')
-        },
-        onGamingClick: function(){
-            this.$store.dispatch('trending_by_gaming_action')
-        },
-        onNewsClick: function(){
-            this.$store.dispatch('trending_by_news_action')
-        }
+        ...mapActions({ 
+            getTrending : 'messages/get_trending_action', 
+            getTrendingMusic : 'messages/trending_by_music_action', 
+            getTrendingMovies : 'messages/trending_by_movies_action', 
+            getTrendingGaming : 'messages/trending_by_gaming_action', 
+            getTrendingNews : 'messages/trending_by_news_action' 
+        }),
+        onTrendingClick: function() { this.getTrending() },
+        onMusicClick: function(){ this.getTrendingMusic() },
+        onMoviesClick: function(){ this.getTrendingMovies() },
+        onGamingClick: function(){ this.getTrendingGaming() },
+        onNewsClick: function(){ this.getTrendingNews() }
     }
 }
 </script>

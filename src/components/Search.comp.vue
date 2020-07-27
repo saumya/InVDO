@@ -27,9 +27,9 @@ export default {
     name: 'SearchComponent',
     components: { Nav1Comp, SearchListItemComp },
     computed: {
-        ...mapGetters([
-            'getSearchList'
-        ])
+        ...mapGetters({
+            searchedList : 'messages/getSearchList'
+        })
     }
 }
 </script>

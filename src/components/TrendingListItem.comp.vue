@@ -41,12 +41,15 @@ export default {
         itemData: {}
     },
     methods:{
-        ...mapActions([ 'update_selected_video_action' ]),
+        ...mapActions({ 
+            updateSelectedVideo : 'messages/update_selected_video_action' 
+        }),
         onViewVideoClick: function(video){
             //const url_inv = 'https://invidio.us/watch?v=' + videoId
             //const url_noc = 'https://www.youtube-nocookie.com/embed/' + videoId
             //this.$store.dispatch( 'update_selected_videoId_action', videoId )
-            this.$store.dispatch( 'update_selected_video_action', video )
+            //this.$store.dispatch( 'messages/update_selected_video_action', video )
+            this.updateSelectedVideo(video)
             this.$router.push('player')
         },
         onViewAuthorClick: function(authorId){

@@ -30,7 +30,9 @@ export default {
         itemData: {}
     },
     methods:{
-        ...mapActions([ 'update_selected_video_action' ]),
+        ...mapActions({ 
+            updateSelectedVideo : 'messages/update_selected_video_action' 
+        }),
         onViewVideoClick: function(video){
             //console.log('onViewVideoClick : videoId :', video)
             // https://invidio.us/watch?v=0b_eHBZLM6U
@@ -41,8 +43,8 @@ export default {
             //console.log('invidious:', url_inv)
             //console.log('nocookie:', url_noc)
 
-            //update_selected_videoId_action
-            this.$store.dispatch( 'update_selected_video_action', video )
+            //this.$store.dispatch( 'messages/update_selected_video_action', video )
+            this.updateSelectedVideo(video)
             this.$router.push('player')
         },
         onViewAuthorClick: function(authorId){
