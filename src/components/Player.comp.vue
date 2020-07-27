@@ -48,22 +48,22 @@
 
         </div>
         <div>
-            <div> {{getSelectedVideo.title}}</div>
-            <div> By- {{getSelectedVideo.author}}</div>
+            <div> {{selectedVideo.title}}</div>
+            <div> By- {{selectedVideo.author}}</div>
             <div>
-                <span>Views- <strong>{{getSelectedVideo.viewCount}}</strong> </span> |
-                <span>Published- <strong>{{getSelectedVideo.publishedText}}</strong> </span> | 
-                <span>Length- <strong>{{ (getSelectedVideo.lengthSeconds) }} secs</strong> </span>
+                <span>Views- <strong>{{selectedVideo.viewCount}}</strong> </span> |
+                <span>Published- <strong>{{selectedVideo.publishedText}}</strong> </span> | 
+                <span>Length- <strong>{{ (selectedVideo.lengthSeconds) }} secs</strong> </span>
             </div>
             <div>
-                <span>Live- <strong>{{getSelectedVideo.liveNow?"Yes":"No"}}</strong> </span> |
-                <span>Paid- <strong>{{getSelectedVideo.paid?"Yes":"No"}}</strong> </span> | 
-                <span>Premium- <strong>{{getSelectedVideo.premium?"Yes":"No"}}</strong> </span> | 
-                <span>Upcoming- <strong>{{getSelectedVideo.isUpcoming?"Yes":"No"}}</strong> </span>
+                <span>Live- <strong>{{selectedVideo.liveNow?"Yes":"No"}}</strong> </span> |
+                <span>Paid- <strong>{{selectedVideo.paid?"Yes":"No"}}</strong> </span> | 
+                <span>Premium- <strong>{{selectedVideo.premium?"Yes":"No"}}</strong> </span> | 
+                <span>Upcoming- <strong>{{selectedVideo.isUpcoming?"Yes":"No"}}</strong> </span>
             </div>
             
             <div style="padding:1em;">
-                {{getSelectedVideo.description}}
+                {{selectedVideo.description}}
             </div>
             
         </div>
@@ -75,15 +75,16 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'PlayerComponent',
     computed: {
-        ...mapGetters([
-            'getAppVersion', 'getSelectedVideoId', 'getSelectedVideo'
-        ]),
+        ...mapGetters({
+            version : 'messages/getAppVersion', 
+            selectedVideo : 'messages/getSelectedVideo'
+        }),
         nocookiesUrl: function(){
             //const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
-            const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideo.videoId)
+            const url = ('https://www.youtube-nocookie.com/embed/'+this.selectedVideo.videoId)
             return url
         },
-        invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.getSelectedVideo.videoId) } 
+        invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.selectedVideo.videoId) } 
     }
 }
 </script>

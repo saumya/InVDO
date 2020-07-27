@@ -17,7 +17,7 @@
         <p class="control"> 
             <button class="button" v-on:click="onInfoClick"> Get Info </button> 
         </p>
-        {{ infoMessage }}
+        {{ getInfo }}
         </section>
     </section>
 </template>
@@ -28,13 +28,18 @@ export default {
     computed: {
         ...mapGetters({
             version : 'messages/getAppVersion', 
-            infoMessage : 'messages/getInfoMessage'
+            getInfo : 'messages/getInfoMessage'
         })
     },
     methods: {
-        ...mapActions([ 'get_info_action' ]),
+        ...mapActions({ 
+            getInfoAction : 'messages/get_info_action' 
+        }),
         onInfoClick(){
-            this.$store.dispatch('get_info_action')
+            //this.$store.dispatch( 'messages/get_info_action' )
+            // mapActions maps
+            // "getInfoAction" to " this.$store.dispatch( 'messages/get_info_action' ) "
+            this.getInfoAction()
         },
     }
         
