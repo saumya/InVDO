@@ -150,4 +150,6 @@ const mutations = {
     UPDATE_SELECTED_VIDEO: (state, video)=>(state.selectedVideoData=video)
 }
 //
-export default {state,getters,actions,mutations}
+export default {
+    namespaced: true,
+    state, getters, actions, mutations}

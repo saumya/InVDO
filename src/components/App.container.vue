@@ -9,7 +9,7 @@
         <router-link to="/trending">Trending</router-link> | 
         <router-link to="/about">About</router-link> | 
         <!-- <router-link to="/vue">VueHelp</router-link> -->
-        <span> Version- {{getAppVersion}} </span>
+        <span> Version- {{version}} </span>
 
         <router-view></router-view> 
     </div>
@@ -19,9 +19,9 @@ import {mapGetters} from 'vuex'
 export default {
     name: 'AppContainer',
     computed: {
-        ...mapGetters([
-            'getAppVersion'
-        ])
+        ...mapGetters({
+            version : 'messages/getAppVersion'
+        })
     }
 }
 </script>

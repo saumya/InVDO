@@ -5,7 +5,7 @@
         <p>
             Youtube Video player with a fresh and extremely simplistic look.
             <ul>
-                <li> Version : {{getAppVersion}} </li>
+                <li> Version : {{version}} </li>
                 <li> No Advertisements </li>
                 <li> Clutter free and Fresh Look </li>
             </ul>
@@ -17,7 +17,7 @@
         <p class="control"> 
             <button class="button" v-on:click="onInfoClick"> Get Info </button> 
         </p>
-        {{ getInfoMessage }}
+        {{ infoMessage }}
         </section>
     </section>
 </template>
@@ -26,9 +26,10 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'AboutComponent',
     computed: {
-        ...mapGetters([
-            'getAppVersion', 'getInfoMessage'
-        ])
+        ...mapGetters({
+            version : 'messages/getAppVersion', 
+            infoMessage : 'messages/getInfoMessage'
+        })
     },
     methods: {
         ...mapActions([ 'get_info_action' ]),
