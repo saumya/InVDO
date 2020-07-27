@@ -9,7 +9,7 @@
         </div>
         -->
         <div class="field has-addons">
-            <p class="control">
+            <p class="control is-expanded">
                 <input class="input" type="text" placeholder="Video" v-model="searchString" />
             </p>
             <p class="control"> <button class="button" v-on:click="onSearchClick">Search Video</button> </p>
