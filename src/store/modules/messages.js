@@ -14,6 +14,10 @@ const state = {
     /* selectedVideoId:'WhWc3b3KhnY', */
     selectedVideoData:{
         videoId: "WhWc3b3KhnY"
+    },
+    videoURLs:{
+        webms:[],
+        mp4s:[]
     }
 }
 
@@ -25,7 +29,8 @@ const getters = {
     getTrendingList: state=> state.trending,
     getSearchList: state=> state.search_list,
     //getSelectedVideoId: state=> state.selectedVideoId,
-    getSelectedVideo: state=> state.selectedVideoData
+    getSelectedVideo: state=> state.selectedVideoData,
+    getSelectedVideoURLs: state=> state.videoURLs
 }
 
 const actions = {
@@ -131,8 +136,8 @@ const actions = {
     search_video_action: ({commit}, payload)=>{
         console.log('search_video_action : payload', payload)
 
-        //const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload
-        const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload + '&page=1'
+        const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload
+        //const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload + '&page=1'
 
         fetch(url).then(success=>{
             if(success.status == '200'){
@@ -140,6 +145,24 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
     },
+    get_video_urls_action: ({commit}, payload)=>{
+        console.log('get_video_urls_action', payload)
+        console.log('commit', commit)
+        const url = Utils.api.endpoint + Utils.api.videos + payload + Utils.api.videoUrls
+        fetch(url).then(success=>{
+            success.json().then(result=>{
+                console.log('RESULT',result)
+
+                const webms = result.adaptiveFormats.filter(item=> item.container==='webm' )
+                const mp4s = result.adaptiveFormats.filter(item=> item.container==='mp4' )
+
+                console.log('mp4s', mp4s)
+                console.log('webms', webms)
+                commit('UPDATE_VIDEO_URLS', {webms,mp4s})
+
+            },error2=>console.log('ERROR:2:',error2))
+        },error1=>console.log('ERROR:1:',error1))
+    }
 }
 
 const mutations = {
@@ -149,7 +172,8 @@ const mutations = {
     UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings),
     UPDATE_SEARCH_LIST: (state, searches)=>(state.search_list=searches),
     //UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId),
-    UPDATE_SELECTED_VIDEO: (state, video)=>(state.selectedVideoData=video)
+    UPDATE_SELECTED_VIDEO: (state, video)=>(state.selectedVideoData=video),
+    UPDATE_VIDEO_URLS: (state, videoUrlObj)=>(state.videoURLs=videoUrlObj)
 }
 //
 export default {

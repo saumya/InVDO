@@ -34,7 +34,7 @@
         <!-- Player -->
             <div style="padding:10px; width:580px; height:335px; background:#EEE;">
                 <video controls width="560" height="315">
-                    <source type="video/webm" :src="selectedWebm">
+                    <!-- <source type="video/webm" :src="selectedWebm"> -->
                     <source type="video/mp4" :src="selectedMp4">
                     Sorry, your browser doesn't support embedded videos.
                 </video>
@@ -64,6 +64,7 @@
                 <button class="button" v-on:click="onOpenInYoutubeClick">Youtube</button>
                 <button class="button" v-on:click="onOpenInInvidiousClick">Invidious</button>
             </div>
+            <button class="button" v-on:click="onGetVideoUrlClick">Get Video URL</button>
             
             <!--
             <video 
@@ -73,6 +74,13 @@
             </video>
             -->
 
+            <!--
+            <div>Mp4</div>
+            {{ videoURLs.mp4s[0].container }}-{{ videoURLs.mp4s[0].url }}
+            <div>WebM</div>
+            {{ videoURLs.webms[0].container }}-{{ videoURLs.webms[0].url }}
+            -->
+
         </div>
 
         
@@ -80,7 +88,7 @@
     </section>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'PlayerComponent',
     data: function(){
@@ -92,7 +100,8 @@ export default {
     computed: {
         ...mapGetters({
             version : 'messages/getAppVersion', 
-            selectedVideo : 'messages/getSelectedVideo'
+            selectedVideo : 'messages/getSelectedVideo',
+            videoURLs: 'messages/getSelectedVideoURLs'
         }),
         nocookiesUrl: function(){
             //const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
@@ -110,8 +119,11 @@ export default {
         console.log('Player : Created')
         console.log( 'this.selectedVideo.videoId', this.selectedVideo.videoId )
     },
-    
+
     methods: {
+        ...mapActions({
+            getVideoUrlsToPlay : 'messages/get_video_urls_action'
+        }),
         onOpenInYoutubeClick: function(){
             const url = 'https://www.youtube.com/watch?v=' + this.selectedVideo.videoId
             //const newWindow = window.open(url)
@@ -128,6 +140,10 @@ export default {
         },
         onOpenInInvidiousClick: function(){
             window.open( this.invidiousUrl )
+        },
+        onGetVideoUrlClick: function(){
+            console.log('onGetVideoUrlClick', this.selectedVideo.videoId)
+            this.getVideoUrlsToPlay( this.selectedVideo.videoId )
         }
     }
 }

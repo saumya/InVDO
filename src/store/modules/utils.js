@@ -41,7 +41,11 @@ const utils = {
         info: '/stats',
 
         /* /:id */
-        video: '/videos/',
+        videos: '/videos/',
+        /** player */
+        videoUrls: '?fields=videoId,adaptiveFormats',
+        /** player */
+        
         annotations: '/annotations/',
         comments: '/comments/',
         insights: '/insights/',
@@ -57,6 +61,8 @@ const utils = {
         mix: '/mixes/',
         playlist: '/playlist/',
 
+
+
         /* /:ucid */
         channels: '/channels/',
         channel_search: '/channels/search/',
@@ -64,6 +70,7 @@ const utils = {
         channel_playlists: '/channels/playlists/',
         channel_latest: '/channels/latest/',
         channel_videos: '/channels/videos/',
+
     },
     actions:{
         callTheApiEndpointAction: (commit, url)=>{
