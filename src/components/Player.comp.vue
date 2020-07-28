@@ -101,6 +101,16 @@ export default {
         },
         invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.selectedVideo.videoId) } 
     },
+
+    // Lifecycle Hook
+    // ref: https://vuejs.org/v2/api/#created
+    // ref: https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks
+    //
+    created: function(){
+        console.log('Player : Created')
+        console.log( 'this.selectedVideo.videoId', this.selectedVideo.videoId )
+    },
+    
     methods: {
         onOpenInYoutubeClick: function(){
             const url = 'https://www.youtube.com/watch?v=' + this.selectedVideo.videoId
