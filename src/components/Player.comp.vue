@@ -1,11 +1,8 @@
 <template>
     <section class="section">
         <div>
-        <!--
-        <p>{{ invidiousUrl }}</p>
-        <p>{{ nocookiesUrl }}</p>
-        -->
-        <!-- Player -->
+
+        <!-- Code Reference -->
         <!--
         <video id='player'>
             <source v-if='validDash' data-quality='Auto' type="application/dash+xml" :src="videoDash" />
@@ -17,41 +14,31 @@
         </video>
         -->
 
-        <!-- Legacy player -->
-        <!--
-        <video id='legacyPlayer' class='videoPlayer' 
-            :src='nocookiesUrl' 
-            controls="controls">
-        </video>
-        -->
-
-        <div style="padding:10px; width:580px; height:335px; background:#EEE;">
+        <!-- Embed -->
             <!--
-            <h1 class="title">Video Player</h1>
-            <h2 class="subtitle">The Youtube player {{getAppVersion}}</h2>
+            <div style="padding:10px; width:580px; height:335px; background:#EEE;">
+                --
+                <h1 class="title">Video Player</h1>
+                <h2 class="subtitle">The Youtube player {{getAppVersion}}</h2>
+                --
+                -- EMBED --
+                <iframe width="560" height="315" title="Video" style="background:#000;" 
+                    :src="nocookiesUrl"
+                    frameborder="0" 
+                    allow='autoplay; encrypted-media' 
+                    allowfullscreen>
+                </iframe>
+            </div>
             -->
-            <!-- EMBED -->
-            <iframe width="560" height="315" title="Video" style="background:#000;" 
-                :src="nocookiesUrl"
-                frameborder="0" 
-                allow='autoplay; encrypted-media' 
-                allowfullscreen>
-            </iframe>
-        </div>
-        <div style="padding:10px; width:580px; height:335px; background:#EEE;">
-            <video controls width="560" height="315">
-                <source type="video/webm" :src="selectedWebm">
-                <source type="video/mp4" :src="selectedMp4">
-                Sorry, your browser doesn't support embedded videos.
-            </video>
-        </div>
 
-        <!--
-        <iframe width="560" height="315" 
-            src="https://www.youtube.com/embed/owsfdh4gxyc" 
-            frameborder="0" allowfullscreen>
-            </iframe>
-        -->
+        <!-- Player -->
+            <div style="padding:10px; width:580px; height:335px; background:#EEE;">
+                <video controls width="560" height="315">
+                    <source type="video/webm" :src="selectedWebm">
+                    <source type="video/mp4" :src="selectedMp4">
+                    Sorry, your browser doesn't support embedded videos.
+                </video>
+            </div>
 
         </div>
         <div>
@@ -73,7 +60,9 @@
                 {{selectedVideo.description}}
             </div>
             <div>
-                <button class="button" v-on:click="onOpenInYoutubeClick">Open In Youtube</button>
+                <div>Open in</div>
+                <button class="button" v-on:click="onOpenInYoutubeClick">Youtube</button>
+                <button class="button" v-on:click="onOpenInInvidiousClick">Invidious</button>
             </div>
             
             <!--
@@ -85,6 +74,8 @@
             -->
 
         </div>
+
+        
         
     </section>
 </template>
@@ -124,6 +115,9 @@ export default {
             //
             // Dash : .mpd format for videos
             // using Dash: https://reference.dashif.org/dash.js/latest/samples/index.html
+        },
+        onOpenInInvidiousClick: function(){
+            window.open( this.invidiousUrl )
         }
     }
 }
