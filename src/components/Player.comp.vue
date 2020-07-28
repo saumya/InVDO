@@ -65,6 +65,9 @@
             <div style="padding:1em;">
                 {{selectedVideo.description}}
             </div>
+            <div>
+                <button class="button" v-on:click="onOpenInYoutubeClick">Open In Youtube</button>
+            </div>
             
         </div>
         
@@ -85,6 +88,13 @@ export default {
             return url
         },
         invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.selectedVideo.videoId) } 
+    },
+    methods: {
+        onOpenInYoutubeClick: function(){
+            const url = 'https://www.youtube.com/watch?v=' + this.selectedVideo.videoId
+            //const newWindow = window.open(url)
+            window.open(url)
+        }
     }
 }
 </script>
