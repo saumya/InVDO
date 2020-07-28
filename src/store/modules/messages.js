@@ -130,8 +130,10 @@ const actions = {
     },
     search_video_action: ({commit}, payload)=>{
         console.log('search_video_action : payload', payload)
-        
-        const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload
+
+        //const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload
+        const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload + '&page=1'
+
         fetch(url).then(success=>{
             if(success.status == '200'){
                 success.json().then(result=>commit('UPDATE_SEARCH_LIST', result),error2=>console.log('error:2:',error2))

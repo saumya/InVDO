@@ -11,6 +11,28 @@
 // ultimately: googlevideo.com
 // 
 //
+//
+
+// =======================================================================================
+// videos
+// https://invidio.us/api/v1/videos/aqz-KE-bpKQ?fields=videoId,title,description&pretty=1
+
+// search
+// https://invidio.us/api/v1/search?q=movie&page=22&pretty=1
+// https://invidio.us/api/v1/search?q=movie&page=1&sort_by=relevance&pretty=1
+// https://invidio.us/api/v1/search?q=movie&page=1&sort_by=relevance&date=today&pretty=1
+// https://invidio.us/api/v1/search?q=movie&page=1&sort_by=relevance&date=today&duration=short&pretty=1
+// https://invidio.us/api/v1/search?q=movie&page=1&sort_by=relevance&date=today&duration=short&type=video&pretty=1
+// https://invidio.us/api/v1/search?q=movie&page=1&sort_by=relevance&date=today&duration=short&type=video&features=hd&pretty=1
+// https://invidio.us/api/v1/search?q=movie&page=1&sort_by=relevance&date=today&duration=short&type=video&features=hd&region=US&pretty=1
+
+// https://invidio.us/api/v1/search?q=movie&region=GB&fields=videoId,title,description&pretty=1
+
+// https://invidio.us/api/v1/search?q= movie &page=22&pretty=1
+
+//
+// =======================================================================================
+//
 
 const utils = {
     info: "Util : info : 1.0.0",

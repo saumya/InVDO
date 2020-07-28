@@ -68,6 +68,12 @@
             <div>
                 <button class="button" v-on:click="onOpenInYoutubeClick">Open In Youtube</button>
             </div>
+
+            <video 
+                data-dashjs-player autoplay 
+                src="https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd" 
+                controls>
+            </video>
             
         </div>
         
@@ -94,6 +100,12 @@ export default {
             const url = 'https://www.youtube.com/watch?v=' + this.selectedVideo.videoId
             //const newWindow = window.open(url)
             window.open(url)
+
+            //
+            // var url = "https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd";
+            // var player = dashjs.MediaPlayer().create();
+             // player.initialize(document.querySelector("#videoPlayer"), url, true);
+            //
         }
     }
 }
