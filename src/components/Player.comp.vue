@@ -35,19 +35,22 @@
             -->
 
             {{ isAppBusy ? "Busy. Please wait..." : "" }}
-            
+            {{ (streamURLs.length>0) ? "" : "No Stream URLs found. Probably it is live. Live videos are work in progress." }}
+
             <!-- Player : Stream -->
             <div>
 
-                <div class="buttons" v-if="!isAppBusy">
-                    <button class="button is-success" v-on:click="onVideoPlayClick">Start</button>
-                    <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
-                    
-                </div>
                 <div v-if="streamURLs.length>0">
-                    <video controls width="560" height="315" ref="videoPlayer">
-                        <source type="video/mp4" :src="streamURLs[0].url">
-                    </video>
+                    <div class="buttons" v-if="!isAppBusy">
+                        <button class="button is-success" v-on:click="onVideoPlayClick">Start</button>
+                        <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
+                        
+                    </div>
+                    <div v-if="streamURLs.length>0">
+                        <video controls width="560" height="315" ref="videoPlayer">
+                            <source type="video/mp4" :src="streamURLs[0].url">
+                        </video>
+                    </div>
                 </div>
                 
             </div>

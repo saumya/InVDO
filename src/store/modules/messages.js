@@ -24,7 +24,9 @@ const state = {
     // formatStreams
     streamURLs: [
         {url: "", }
-    ]
+    ],
+    // live streams
+    hlsUrl: ""
 }
 
 const getters = {
@@ -156,6 +158,9 @@ const actions = {
         console.log('get_video_urls_action', payload)
         //console.log('commit', commit)
         const url = Utils.api.endpoint + Utils.api.videos + payload + Utils.api.videoUrls
+        
+        console.log('get_video_urls_action: url', url)
+
         fetch(url).then(success=>{
             success.json().then(result=>{
                 console.log('RESULT',result)
