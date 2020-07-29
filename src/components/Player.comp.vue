@@ -2,7 +2,7 @@
     <section class="section">
         <div>
 
-            <!-- Embed -->
+            <!-- Player : Embed -->
             <!--
             <div style="padding:10px; width:580px; height:335px; background:#EEE;">
                 
@@ -36,9 +36,15 @@
 
             <!-- Player : Stream -->
             <div v-if="streamURLs.length>0 ">
+                <div class="buttons">
+                    <button class="button is-success" v-on:click="onVideoPlayClick">Start</button>
+                    <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
+                    
+                </div>
                 <video controls width="560" height="315" ref="videoPlayer">
                     <source type="video/mp4" :src="streamURLs[0].url">
                 </video>
+                
             </div>
         
 
@@ -83,10 +89,12 @@
             <div>WebM</div>
             {{ mediaURLs.webms[0].container }}-{{ mediaURLs.webms[0].url }}
             -->
+            <!--
             <div>
                 <div>Stream</div>
                 {{ streamURLs[0].url }}
             </div>
+            -->
 
         </div>
 
@@ -133,6 +141,12 @@ export default {
         console.log( 'this.selectedVideo.videoId', this.selectedVideo.videoId )
         this.getVideoUrlsToPlay( this.selectedVideo.videoId )
     },
+    beforeDestory: function(){
+        console.log('Player : beforeDestory')
+    },
+    destroyed: function(){
+        console.log('Player : destroyed')
+    },
 
     methods: {
         ...mapActions({
@@ -167,10 +181,23 @@ export default {
         onVideoPlayClick: function(){
             //console.log(event)
             //console.log(event.target)
+            /*
+            // Adaptive player
             this.$refs.videoPlayer.load();
             this.$refs.videoPlayer.play();
             this.$refs.audioPlayer.play();
-        }
+            */
+           // Streaming player
+           this.$refs.videoPlayer.load();
+           this.$refs.videoPlayer.play();
+        },
+        onVideoPauseClick: function(){
+            if(this.$refs.videoPlayer.paused){
+                this.$refs.videoPlayer.play();
+            }else{
+                this.$refs.videoPlayer.pause();
+            }
+        },
 
     }
 }
