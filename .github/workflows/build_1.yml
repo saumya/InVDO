@@ -13,7 +13,7 @@ jobs:
  build:
   strategy:
    matrix:
-    version: [0.4.0]
+    version: [0.5.0]
     node-version: [12.x]
     os: [ubuntu-latest, windows-latest, macos-latest]
   
@@ -39,29 +39,29 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
-      name: invdo-0.4.0-amd64.deb
-      path: dist_electron/invdo-0.4.0-amd64.deb
+      name: invdo-0.5.0-amd64.deb
+      path: dist_electron/invdo-0.5.0-amd64.deb
 
   - name: Upload .rpm Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
-      name: invdo-0.4.0-amd64.rpm
-      path: dist_electron/invdo-0.4.0.x86-64.rpm
+      name: invdo-0.5.0-amd64.rpm
+      path: dist_electron/invdo-0.5.0.x86-64.rpm
 
   - name: Upload AppImage Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
-      name: InVDO-0.4.0.AppImage
-      path: dist_electron/InVDO-0.4.0.AppImage
+      name: InVDO-0.5.0.AppImage
+      path: dist_electron/InVDO-0.5.0.AppImage
 
   - name: Upload .snap Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'ubuntu')
     with:
-      name: invdo_0.4.0_amd64.snap
-      path: dist_electron/invdo_0.4.0_amd64.snap
+      name: invdo_0.5.0_amd64.snap
+      path: dist_electron/invdo_0.5.0_amd64.snap
   
 #  - name: Upload Web Build
 #    uses: actions/upload-artifact@v2
@@ -75,8 +75,8 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'windows')
     with:
-      name: invdo-0.4.0-win-x64-portable
-      path: dist_electron/invdo-0.4.0-win.zip
+      name: invdo-0.5.0-win-x64-portable
+      path: dist_electron/invdo-0.5.0-win.zip
 
   - name: Upload Windows .exe Artifact
     uses: actions/upload-artifact@v2
@@ -89,12 +89,12 @@ jobs:
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'macos')
     with:
-      name: InVDO-0.4.0-mac.zip
-      path: dist_electron/InVDO-0.4.0-mac.zip
+      name: InVDO-0.5.0-mac.zip
+      path: dist_electron/InVDO-0.5.0-mac.zip
 
   - name: Upload Mac .dmg Artifact
     uses: actions/upload-artifact@v2
     if: startsWith(matrix.os, 'macos')
     with:
-      name: InVDO-0.4.0.dmg
-      path: dist_electron/InVDO-0.4.0.dmg
+      name: InVDO-0.5.0.dmg
+      path: dist_electron/InVDO-0.5.0.dmg

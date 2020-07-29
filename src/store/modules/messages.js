@@ -4,7 +4,7 @@ import Utils from './utils'
 
 
 const state = {
-    app_version: '0.4.1',
+    app_version: '0.5.0',
     info: 'VueX in Action',
     is_busy: false,
     popular:[],
