@@ -4,7 +4,7 @@ import Utils from './utils'
 
 
 const state = {
-    app_version: '0.3.1',
+    app_version: '0.4.1',
     info: 'VueX in Action',
     is_busy: false,
     popular:[],
@@ -159,6 +159,7 @@ const actions = {
         fetch(url).then(success=>{
             success.json().then(result=>{
                 console.log('RESULT',result)
+
                 // WebM / Video
                 const webms = result.adaptiveFormats.filter(item=> {
                     let result = false
@@ -169,6 +170,7 @@ const actions = {
                     }
                     return result
                 } )
+
                 const mp4s = result.adaptiveFormats.filter(item=> item.container==='mp4' )
 
                 const webmAudios = result.adaptiveFormats.filter(item=> {
@@ -188,6 +190,7 @@ const actions = {
                 console.log('webmAudios', webmAudios)
                 console.log('streams', streams)
 
+                commit('UPDATE_BUSY_STATUS', false)
                 commit('UPDATE_MEDIA_URLS', { webms, mp4s, webmAudios })
                 commit('UPDATE_STREAM_URLS', streams)
 

@@ -34,16 +34,21 @@
             </div>
             -->
 
+            {{ isAppBusy ? "Busy. Please wait..." : "" }}
+            
             <!-- Player : Stream -->
-            <div v-if="streamURLs.length>0 ">
-                <div class="buttons">
+            <div>
+
+                <div class="buttons" v-if="!isAppBusy">
                     <button class="button is-success" v-on:click="onVideoPlayClick">Start</button>
                     <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
                     
                 </div>
-                <video controls width="560" height="315" ref="videoPlayer">
-                    <source type="video/mp4" :src="streamURLs[0].url">
-                </video>
+                <div v-if="streamURLs.length>0">
+                    <video controls width="560" height="315" ref="videoPlayer">
+                        <source type="video/mp4" :src="streamURLs[0].url">
+                    </video>
+                </div>
                 
             </div>
         
@@ -123,6 +128,7 @@ export default {
     computed: {
         ...mapGetters({
             version : 'messages/getAppVersion', 
+            isAppBusy : 'messages/getWhetherBusy',
             selectedVideo : 'messages/getSelectedVideo',
             mediaURLs: 'messages/getSelectedMediaURLs',
             streamURLs: 'messages/getStreamURLs'
@@ -142,6 +148,7 @@ export default {
     created: function(){
         console.log('Player : Created')
         console.log( 'this.selectedVideo.videoId', this.selectedVideo.videoId )
+        this.setAppAsBusy(true)
         this.getVideoUrlsToPlay( this.selectedVideo.videoId )
     },
     destroyed: function(){
@@ -150,6 +157,7 @@ export default {
 
     methods: {
         ...mapActions({
+            setAppAsBusy : 'messages/update_busy_status_action',
             getVideoUrlsToPlay : 'messages/get_video_urls_action'
         }),
         onOpenInYoutubeClick: function(){
