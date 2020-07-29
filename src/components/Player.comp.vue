@@ -31,11 +31,16 @@
 
             <div v-if="videoURLs.mp4s[0].container !=='' ">
                 
-            <div style="padding:10px; width:580px; height:335px; background:#EEE;">
+            <div style="padding:10px; width:580px; height:435px; background:#EEE;">
                 <video controls width="560" height="315" ref="videoPlayer">
-                    <source type="video/webm" :src="videoURLs.webms[0].url">
-                    <!-- <source type="video/mp4" :src="videoURLs.mp4s[0].url"> -->
+                    <!-- <source type="video/webm" :src="videoURLs.webms[0].url"> -->
+                    <source type="video/mp4" :src="videoURLs.mp4s[0].url">
                 </video>
+                <audio controls :src="videoURLs.webmAudios[0].url" ref="audioPlayer" />
+                
+                <div class="controls">
+                    <button v-on:click="onVideoPlayClick">Play</button>
+                </div>
             </div>
 
             </div>
@@ -157,7 +162,15 @@ export default {
             console.log('onLoadVideoClick')
             console.log( this.$refs.videoPlayer )
             this.$refs.videoPlayer.load();
+        },
+        onVideoPlayClick: function(){
+            //console.log(event)
+            //console.log(event.target)
+            this.$refs.videoPlayer.load();
+            this.$refs.videoPlayer.play();
+            this.$refs.audioPlayer.play();
         }
+
     }
 }
 </script>

@@ -17,7 +17,8 @@ const state = {
     },
     videoURLs:{
         webms:[{container:'', url:''}],
-        mp4s:[{container:'', url:''}]
+        mp4s:[{container:'', url:''}],
+        webmAudios:[{container:'', url:''}]
     }
 }
 
@@ -152,7 +153,7 @@ const actions = {
         fetch(url).then(success=>{
             success.json().then(result=>{
                 console.log('RESULT',result)
-
+                // WebM / Video
                 const webms = result.adaptiveFormats.filter(item=> {
                     let result = false
                     if(item.container==='webm'){
@@ -164,9 +165,21 @@ const actions = {
                 } )
                 const mp4s = result.adaptiveFormats.filter(item=> item.container==='mp4' )
 
+                const webmAudios = result.adaptiveFormats.filter(item=> {
+                    let result = false
+                    if(item.container==='webm'){
+                        if(item.type.indexOf('audio/webm') !== -1){
+                            result = true
+                        }
+                    }
+                    return result
+                })
+
                 console.log('mp4s', mp4s)
                 console.log('webms', webms)
-                commit('UPDATE_VIDEO_URLS', {webms,mp4s})
+                console.log('webmAudios', webmAudios)
+
+                commit('UPDATE_VIDEO_URLS', { webms, mp4s, webmAudios})
 
             },error2=>console.log('ERROR:2:',error2))
         },error1=>console.log('ERROR:1:',error1))
