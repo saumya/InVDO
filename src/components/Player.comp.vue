@@ -2,19 +2,7 @@
     <section class="section">
         <div>
 
-        <!-- Code Reference -->
-        <!--
-        <video id='player'>
-            <source v-if='validDash' data-quality='Auto' type="application/dash+xml" :src="videoDash" />
-            <source v-if='validLive' data-quality='Live' type="application/x-mpegURL" :src="videoLive" />
-            <span v-html="subtitleHtml"></span>
-            <track kind="metadata" srclang='' class="time-rail-thumbnails" 
-                :src="'https://invidio.us/api/v1/storyboards/' + videoId + '?height=90'">
-            </track>
-        </video>
-        -->
-
-        <!-- Embed -->
+            <!-- Embed -->
             <!--
             <div style="padding:10px; width:580px; height:335px; background:#EEE;">
                 
@@ -27,22 +15,30 @@
             </div>
             -->
 
-        <!-- Player -->
-
-            <div v-if="videoURLs.mp4s[0].container !=='' ">
+            <!-- Player : Adaptive format -->
+            <!--
+            <div v-if="mediaURLs.mp4s[0].container !=='' ">
                 
-            <div style="padding:10px; width:580px; height:435px; background:#EEE;">
-                <video controls width="560" height="315" ref="videoPlayer">
-                    <!-- <source type="video/webm" :src="videoURLs.webms[0].url"> -->
-                    <source type="video/mp4" :src="videoURLs.mp4s[0].url">
-                </video>
-                <audio controls :src="videoURLs.webmAudios[0].url" ref="audioPlayer" />
-                
-                <div class="controls">
-                    <button v-on:click="onVideoPlayClick">Play</button>
+                <div style="padding:10px; width:580px; height:435px; background:#EEE;">
+                    <video controls width="560" height="315" ref="videoPlayer">
+                        <source type="video/webm" :src="mediaURLs.webms[0].url">
+                        <source type="video/mp4" :src="mediaURLs.mp4s[0].url">
+                    </video>
+                    <audio controls :src="mediaURLs.webmAudios[0].url" ref="audioPlayer" />
+                    
+                    <div class="controls">
+                        <button v-on:click="onVideoPlayClick">Play</button>
+                    </div>
                 </div>
-            </div>
 
+            </div>
+            -->
+
+            <!-- Player : Stream -->
+            <div v-if="streamURLs.length>0 ">
+                <video controls width="560" height="315" ref="videoPlayer">
+                    <source type="video/mp4" :src="streamURLs[0].url">
+                </video>
             </div>
         
 
@@ -81,12 +77,16 @@
             </video>
             -->
 
-            
+            <!--
             <div>Mp4</div>
-            {{ videoURLs.mp4s[0].container }}-{{ videoURLs.mp4s[0].url }}
+            {{ mediaURLs.mp4s[0].container }}-{{ mediaURLs.mp4s[0].url }}
             <div>WebM</div>
-            {{ videoURLs.webms[0].container }}-{{ videoURLs.webms[0].url }}
-            
+            {{ mediaURLs.webms[0].container }}-{{ mediaURLs.webms[0].url }}
+            -->
+            <div>
+                <div>Stream</div>
+                {{ streamURLs[0].url }}
+            </div>
 
         </div>
 
@@ -113,7 +113,8 @@ export default {
         ...mapGetters({
             version : 'messages/getAppVersion', 
             selectedVideo : 'messages/getSelectedVideo',
-            videoURLs: 'messages/getSelectedVideoURLs'
+            mediaURLs: 'messages/getSelectedMediaURLs',
+            streamURLs: 'messages/getStreamURLs'
         }),
         nocookiesUrl: function(){
             //const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
