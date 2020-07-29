@@ -16,8 +16,8 @@ const state = {
         videoId: "WhWc3b3KhnY"
     },
     videoURLs:{
-        webms:[],
-        mp4s:[]
+        webms:[{container:'', url:''}],
+        mp4s:[{container:'', url:''}]
     }
 }
 
@@ -147,13 +147,21 @@ const actions = {
     },
     get_video_urls_action: ({commit}, payload)=>{
         console.log('get_video_urls_action', payload)
-        console.log('commit', commit)
+        //console.log('commit', commit)
         const url = Utils.api.endpoint + Utils.api.videos + payload + Utils.api.videoUrls
         fetch(url).then(success=>{
             success.json().then(result=>{
                 console.log('RESULT',result)
 
-                const webms = result.adaptiveFormats.filter(item=> item.container==='webm' )
+                const webms = result.adaptiveFormats.filter(item=> {
+                    let result = false
+                    if(item.container==='webm'){
+                        if(item.type.indexOf('video/webm') !== -1){
+                            result = true
+                        }
+                    }
+                    return result
+                } )
                 const mp4s = result.adaptiveFormats.filter(item=> item.container==='mp4' )
 
                 console.log('mp4s', mp4s)
