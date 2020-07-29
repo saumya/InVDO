@@ -43,7 +43,7 @@ const utils = {
         /* /:id */
         videos: '/videos/',
         /** player */
-        videoUrls: '?fields=videoId,adaptiveFormats,formatStreams',
+        videoUrls: '?fields=videoId,adaptiveFormats,formatStreams,hlsUrl',
         /** player */
         
         annotations: '/annotations/',
