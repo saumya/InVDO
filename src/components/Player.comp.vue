@@ -72,9 +72,12 @@
                 <button class="button" v-on:click="onOpenInYoutubeClick">Youtube</button>
                 <button class="button" v-on:click="onOpenInInvidiousClick">Invidious</button>
             </div>
+            
+            <!--
             <button class="button" v-on:click="onGetVideoUrlClick">Get Video URL</button>
             <button class="button" v-on:click="onLoadVideoClick"> Load Video </button>
-            
+            -->
+
             <!--
             <video 
                 data-dashjs-player autoplay 
@@ -140,9 +143,6 @@ export default {
         console.log('Player : Created')
         console.log( 'this.selectedVideo.videoId', this.selectedVideo.videoId )
         this.getVideoUrlsToPlay( this.selectedVideo.videoId )
-    },
-    beforeDestory: function(){
-        console.log('Player : beforeDestory')
     },
     destroyed: function(){
         console.log('Player : destroyed')
