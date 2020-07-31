@@ -14,8 +14,10 @@
 
             <div class="buttons has-addons">
                 <button class="button" v-on:click="onViewVideoClick(itemData)"> Vdo </button>
+                <!--
                 <button class="button" v-on:click="onViewAuthorClick(itemData.authorId)"> Author </button> 
                 <button class="button" v-on:click="onViewChannelClick(itemData.authorUrl)"> Channel </button>
+                -->
             </div>
 
         </div>
