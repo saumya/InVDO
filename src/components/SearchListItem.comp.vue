@@ -20,7 +20,7 @@
                         <!-- <div> LiveNow-{{item.liveNow?"Yes":"No"}}, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div> -->
                         
                         <div class="buttons has-addons">
-                            <button class="button" v-on:click="onViewVideoClick(item)"> Play </button>
+                            <button class="button is-small" v-on:click="onViewVideoClick(item)"> Play </button>
                             <!--
                             <button class="button" v-on:click="onViewAuthorClick(item.authorId)"> Author </button> 
                             <button class="button" v-on:click="onViewChannelClick(item.authorUrl)"> Channel </button>
