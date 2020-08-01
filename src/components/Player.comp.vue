@@ -57,11 +57,22 @@
 
             <!-- Player : Live Stream -->
             <div>
-                live@{{ liveURL }}
-                <div>
-                    TODO: Play this live stream
-                </div>
-                {{ selectedVideo.liveNow ? "Live Player" : "Stream Player"}}
+                <div>{{ Hls.isSupported() ? "Yes" : "No" }}</div>
+                <div>{{ selectedVideo.liveNow ? "Live Player" : "Stream Player"}}</div>
+
+                <div>Live URL = {{ liveURL }}</div>
+                <div>{{ (liveURL=="") ? "No Live URL" : "Live URL Avialable" }}</div>
+                
+                    <div v-if="isLiveURLAvailable">
+                        <h2 class="title">Live Player</h2>
+                        <button class="button is-success" v-on:click="onLivePlayClick">Start Live </button>
+                        <video controls width="560" height="315" ref="videoPlayerLive">
+
+                        </video>
+                        
+                    </div>
+                
+                
             </div>
         
 
@@ -124,6 +135,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
     name: 'PlayerComponent',
     data: function(){
@@ -146,6 +158,13 @@ export default {
             streamURLs: 'messages/getStreamURLs',
             liveURL: 'messages/getLiveStreamURL'
         }),
+        isLiveURLAvailable: function(){
+            if(this.liveURL===''){
+                return false
+            }else{
+                return true
+            }
+        },
         nocookiesUrl: function(){
             //const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
             const url = ('https://www.youtube-nocookie.com/embed/'+this.selectedVideo.videoId)
@@ -164,6 +183,15 @@ export default {
         this.setAppAsBusy(true)
         //this.getVideoUrlsToPlay( this.selectedVideo.videoId )
         this.getVideoUrlsToPlay( this.selectedVideo )
+        //
+        
+        //var video_live = document.getElementById('video_live')
+        //var videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+        
+        console.log('-------------------------------------')
+        //console.log('Live Video : query :', video_live)
+        
+        console.log('-------------------------------------')
     },
     destroyed: function(){
         console.log('Player : destroyed')
@@ -220,6 +248,21 @@ export default {
                 this.$refs.videoPlayer.pause();
             }
         },
+        onLivePlayClick: function(){
+            console.log('onLivePlayClick')
+            //console.log('Live Video : ref :', this.$refs.videoPlayerLive)
+
+            const Hls = window.Hls //refer: main.js : we got Hls from there
+            let hls = new Hls()
+            //console.log('hls', hls)
+            hls.loadSource(this.liveURL)
+            hls.attachMedia( this.$refs.videoPlayerLive )
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                console.log('MANIFEST_PARSED')
+                this.$refs.videoPlayerLive.play()
+            })
+
+        }
 
     }
 }

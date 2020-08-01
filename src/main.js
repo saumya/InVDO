@@ -12,6 +12,10 @@ new Vue({
 }).$mount('#app')
 */
 
+// Getting the Global varibles into Vue App
+// Ref: https://stackoverflow.com/questions/54166847/how-to-access-the-window-object-in-vue-js
+Vue.prototype.Hls = window.Hls;
+//
 new Vue({
   el: '#app',
   router: router,
