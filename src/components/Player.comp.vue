@@ -54,6 +54,15 @@
                 </div>
                 
             </div>
+
+            <!-- Player : Live Stream -->
+            <div>
+                live@{{ liveURL }}
+                <div>
+                    TODO: Play this live stream
+                </div>
+                {{ selectedVideo.liveNow ? "Live Player" : "Stream Player"}}
+            </div>
         
 
         </div>
@@ -134,7 +143,8 @@ export default {
             isAppBusy : 'messages/getWhetherBusy',
             selectedVideo : 'messages/getSelectedVideo',
             mediaURLs: 'messages/getSelectedMediaURLs',
-            streamURLs: 'messages/getStreamURLs'
+            streamURLs: 'messages/getStreamURLs',
+            liveURL: 'messages/getLiveStreamURL'
         }),
         nocookiesUrl: function(){
             //const url = ('https://www.youtube-nocookie.com/embed/'+this.getSelectedVideoId)
@@ -152,7 +162,8 @@ export default {
         console.log('Player : Created')
         console.log( 'this.selectedVideo.videoId', this.selectedVideo.videoId )
         this.setAppAsBusy(true)
-        this.getVideoUrlsToPlay( this.selectedVideo.videoId )
+        //this.getVideoUrlsToPlay( this.selectedVideo.videoId )
+        this.getVideoUrlsToPlay( this.selectedVideo )
     },
     destroyed: function(){
         console.log('Player : destroyed')

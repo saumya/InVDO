@@ -7,7 +7,7 @@
                         <div><strong>{{ item.title }}</strong></div>
                         <div> Author- <strong>{{ item.author }}</strong> </div>
                         <div> ViewCount-{{item.viewCount}} </div>
-                        <div> LiveNow-{{item.liveNow?"Yes":"No"}}, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div>
+                        <div> LiveNow-<strong>{{item.liveNow?"Yes":"No"}}</strong>, Paid-{{item.paid?"Yes":"No"}}, Premium-{{item.premium?"Yes":"No"}}, isUpcoming-{{item.isUpcoming?"Yes":"No"}} </div>
                         <div>{{ item.description }}</div>
                         <!--<div>{{ item.descriptionHtml }}</div>-->
 
@@ -26,6 +26,7 @@
                             <button class="button" v-on:click="onViewChannelClick(item.authorUrl)"> Channel </button>
                             -->
                         </div>
+                        
 
                     </div>
                 </li>

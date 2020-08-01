@@ -26,6 +26,7 @@ const state = {
         {url: "", }
     ],
     // live streams
+    /* isLiveVideo: false, */
     hlsUrl: ""
 }
 
@@ -39,7 +40,8 @@ const getters = {
     //getSelectedVideoId: state=> state.selectedVideoId,
     getSelectedVideo: state=> state.selectedVideoData,
     getSelectedMediaURLs: state=> state.mediaURLs,
-    getStreamURLs: state=> state.streamURLs
+    getStreamURLs: state=> state.streamURLs,
+    getLiveStreamURL: state=> state.hlsUrl
 }
 
 const actions = {
@@ -156,8 +158,12 @@ const actions = {
     },
     get_video_urls_action: ({commit}, payload)=>{
         console.log('get_video_urls_action', payload)
+        const videoId = payload.videoId
+        const isLiveVideo = payload.liveNow
+        console.log('video id', videoId)
+        console.log('Live', isLiveVideo)
         //console.log('commit', commit)
-        const url = Utils.api.endpoint + Utils.api.videos + payload + Utils.api.videoUrls
+        const url = Utils.api.endpoint + Utils.api.videos + videoId + Utils.api.videoUrls
         
         console.log('get_video_urls_action: url', url)
 
@@ -190,14 +196,24 @@ const actions = {
 
                 const streams = result.formatStreams
 
+                let liveStreamURL = ''
+                if(payload.liveNow){
+                    liveStreamURL = result.hlsUrl
+                }
+                
+
                 console.log('mp4s', mp4s)
                 console.log('webms', webms)
                 console.log('webmAudios', webmAudios)
                 console.log('streams', streams)
+                console.log('liveStreamURL', liveStreamURL)
 
                 commit('UPDATE_BUSY_STATUS', false)
                 commit('UPDATE_MEDIA_URLS', { webms, mp4s, webmAudios })
                 commit('UPDATE_STREAM_URLS', streams)
+                commit('UPDATE_LIVE_URL', liveStreamURL)
+
+                
 
             },error2=>console.log('ERROR:2:',error2))
         },error1=>console.log('ERROR:1:',error1))
@@ -213,7 +229,8 @@ const mutations = {
     //UPDATE_SELECTED_VIDEO_ID: (state, videoId)=>(state.selectedVideoId=videoId),
     UPDATE_SELECTED_VIDEO: (state, video)=>(state.selectedVideoData=video),
     UPDATE_MEDIA_URLS: (state, mediaUrlObj)=>(state.mediaURLs=mediaUrlObj),
-    UPDATE_STREAM_URLS: (state, streams)=>(state.streamURLs=streams)
+    UPDATE_STREAM_URLS: (state, streams)=>(state.streamURLs=streams),
+    UPDATE_LIVE_URL: (state, liveStreamUrl)=>(state.hlsUrl=liveStreamUrl)
 }
 //
 export default {
