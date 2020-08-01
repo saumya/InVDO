@@ -56,23 +56,26 @@
             </div>
 
             <!-- Player : Live Stream -->
-            <div>
+            <div class="has-background-info-light">
+                <!--
                 <div>{{ Hls.isSupported() ? "Yes" : "No" }}</div>
                 <div>{{ selectedVideo.liveNow ? "Live Player" : "Stream Player"}}</div>
 
                 <div>Live URL = {{ liveURL }}</div>
                 <div>{{ (liveURL=="") ? "No Live URL" : "Live URL Avialable" }}</div>
-                
-                    <div v-if="isLiveURLAvailable">
-                        <h2 class="title">Live Player</h2>
-                        <button class="button is-success" v-on:click="onLivePlayClick">Start Live </button>
-                        <video controls width="560" height="315" ref="videoPlayerLive">
+                -->
 
-                        </video>
-                        
+                <div v-if="isLiveURLAvailable">
+
+                    <div class="buttons">
+                        <button class="button is-success" v-on:click="onLivePlayClick"> Start Live Video </button>
                     </div>
-                
-                
+                    <video controls width="560" height="315" ref="videoPlayerLive">
+                        <source :src="liveURL">
+                    </video>
+                    
+                </div>
+
             </div>
         
 
@@ -188,10 +191,10 @@ export default {
         //var video_live = document.getElementById('video_live')
         //var videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
         
-        console.log('-------------------------------------')
+        //console.log('-------------------------------------')
         //console.log('Live Video : query :', video_live)
         
-        console.log('-------------------------------------')
+        //console.log('-------------------------------------')
     },
     destroyed: function(){
         console.log('Player : destroyed')

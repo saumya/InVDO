@@ -26,7 +26,7 @@ export default {
     data: function(){
         // 'Michael Jackson - They Don't Care About Us (Prison Version) (Official Video)'
         return({
-            searchString : 'Its My Life Dr. Alban'
+            searchString : 'Open Source'
         })
     },
     computed: {
