@@ -1,6 +1,9 @@
 InVDO
 =========================
 A Video player for Youtube. 
+ - [x] Trending List
+ - [x] Popular List
+ - [x] Search Video
  - [x] Plays Normal Videos
  - [ ] Playing Live Video (HLS JS is used for this)
 
