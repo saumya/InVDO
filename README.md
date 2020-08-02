@@ -12,6 +12,7 @@ A Video player for Youtube.
 Made with [Vue][vue] and [Electron][3] for Dektop. 
 
  - [Vue CLI Plugin Electron Builder][2]
+ - [Icon Builder][icon], [Example Repository][ei]
  - [HLS JS][4]
  - [invidious API][5]
  - [Invidious-Instances][6]
@@ -56,6 +57,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [vue]: https://vuejs.org/
 [2]: https://github.com/nklayman/vue-cli-plugin-electron-builder
+[icon]: https://nklayman.github.io/vue-cli-plugin-electron-builder/guide/recipes.html#icons
+[ei]: https://github.com/nklayman/electron-icon-example
 [3]: https://www.electronjs.org
 [4]: https://github.com/video-dev/hls.js/
 [5]: https://github.com/iv-org/invidious/wiki/API
