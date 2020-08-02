@@ -35,7 +35,7 @@
             -->
 
             {{ isAppBusy ? "Busy. Please wait..." : "" }}
-            {{ (streamURLs.length>0) ? "" : "No Stream URLs found. Probably it is live. Live videos are work in progress." }}
+            {{ (streamURLs.length>0) ? "" : "No Stream URLs found. Probably it is live. Live videos are work in progress. I am working my best to resolve this as soon as possible." }}
 
             <!-- Player : Stream -->
             <div>
@@ -48,7 +48,17 @@
                     </div>
                     <div v-if="streamURLs.length>0">
                         <video controls width="560" height="315" ref="videoPlayer">
-                            <source type="video/mp4" :src="streamURLs[0].url">
+                            <source type="video/mp4" :src="streamURLs[0].url+'&local=true'">
+                            <!--
+                                ref: 
+                                Always use "local" to proxy video through the server without creating an account
+                                
+                                1. &local=true
+                                2. https://github.com/iv-org/invidious/wiki/Always-use-%22local%22-to-proxy-video-through-the-server-without-creating-an-account
+
+                                You can enable DASH by appending &quality=dash to the end of a video's URL
+                                1. https://github.com/iv-org/invidious/wiki/Geoblocking,-available-video-quality-and-DASH
+                            -->
                         </video>
                     </div>
                 </div>
@@ -68,10 +78,10 @@
                 <div v-if="isLiveURLAvailable">
 
                     <div class="buttons">
-                        <button class="button is-success" v-on:click="onLivePlayClick"> Start Live Video </button>
+                        <button class="button is-warning" v-on:click="onLivePlayClick"> Start Live Video </button>
                     </div>
                     <video controls width="560" height="315" ref="videoPlayerLive">
-                        <source :src="liveURL">
+                        <source type="application/x-mpegURL" :src="liveURL+'&local=true'">
                     </video>
                     
                 </div>
@@ -254,17 +264,21 @@ export default {
         onLivePlayClick: function(){
             console.log('onLivePlayClick')
             //console.log('Live Video : ref :', this.$refs.videoPlayerLive)
-
+            console.log('Live URL', this.liveURL)
+            
             const Hls = window.Hls //refer: main.js : we got Hls from there
             let hls = new Hls()
-            //console.log('hls', hls)
-            hls.loadSource(this.liveURL)
+            hls.loadSource(this.liveURL+'&local=true')
+            //hls.loadSource('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8') // Blender
             hls.attachMedia( this.$refs.videoPlayerLive )
             hls.on(Hls.Events.MANIFEST_PARSED, function() {
                 console.log('MANIFEST_PARSED')
                 this.$refs.videoPlayerLive.play()
             })
-
+            /*
+           let canPlayResponse = this.$refs.videoPlayerLive.canPlayType('video/m3u8')
+           console.log('canPlayResponse=', canPlayResponse);
+           */
         }
 
     }

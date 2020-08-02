@@ -4,16 +4,17 @@ import Utils from './utils'
 
 
 const state = {
-    app_version: '0.6.0',
+    app_version: '0.6.1',
     info: 'VueX in Action',
     is_busy: false,
     popular:[],
     trending:[],
     search_list:[],
-    /* Spring - Blender Open Movie */
+    /* Spring - Blender Open Movie : WhWc3b3KhnY */
+    /* CoffeeRun - Blender OpenMovie : PVGeM40dABA */
     /* selectedVideoId:'WhWc3b3KhnY', */
     selectedVideoData:{
-        videoId: "WhWc3b3KhnY"
+        videoId: "PVGeM40dABA"
     },
     // adaptiveFormats
     mediaURLs: {
@@ -166,6 +167,9 @@ const actions = {
         const url = Utils.api.endpoint + Utils.api.videos + videoId + Utils.api.videoUrls
         
         console.log('get_video_urls_action: url', url)
+
+        // &local=true
+        // ref: https://github.com/iv-org/invidious/wiki/Always-use-%22local%22-to-proxy-video-through-the-server-without-creating-an-account
 
         fetch(url).then(success=>{
             success.json().then(result=>{

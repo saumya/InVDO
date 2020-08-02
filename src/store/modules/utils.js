@@ -33,11 +33,18 @@
 //
 // =======================================================================================
 //
+// public instances : 
+// https://github.com/iv-org/invidious/wiki/Invidious-Instances
+// https://instances.invidio.us/
+//
+// https://invidio.us/api/v1 : shut down : September 1 2020
+// https://invidious.snopyta.org/
+// 
 
 const utils = {
     info: "Util : info : 1.0.0",
     api:{
-        endpoint: 'https://invidio.us/api/v1',
+        endpoint: 'https://invidious.snopyta.org/api/v1',
         info: '/stats',
 
         /* /:id */

@@ -1,10 +1,13 @@
 InVDO
 =========================
 A Video player for Youtube. 
+ - [x] Plays Normal Videos
+ - [] Live Videos are not playing yet (used HLS Player)
 
 Made with [Vue][vue] and [Electron][3] for Dektop. 
 
  - [Vue CLI Plugin Electron Builder][2]
+ - [HLS JS][4]
 
 Vue CLI Plugin Electron Builder makes it very easy to make any [Vue][vue] application to become a desktop application.
 
@@ -47,6 +50,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 [vue]: https://vuejs.org/
 [2]: https://github.com/nklayman/vue-cli-plugin-electron-builder
 [3]: https://www.electronjs.org
+[4]: https://github.com/video-dev/hls.js/
 
 
 
