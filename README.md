@@ -2,7 +2,7 @@ InVDO
 =========================
 A Video player for Youtube. 
  - [x] Plays Normal Videos
- - [ ] Live Videos are not playing yet (used HLS Player)
+ - [ ] Playing Live Video (HLS JS is used for this)
 
 Made with [Vue][vue] and [Electron][3] for Dektop. 
 
