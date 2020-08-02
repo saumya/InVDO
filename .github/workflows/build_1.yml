@@ -13,7 +13,7 @@ jobs:
  build:
   strategy:
    matrix:
-    version: [0.6.1]
+    version: [0.6.2]
     node-version: [12.x]
     os: [ubuntu-latest, windows-latest, macos-latest]
   
@@ -30,6 +30,10 @@ jobs:
     run: npm ci
 #  - run: npm run lint
 #  - run: npm run build --if-present
+# Icons
+  - name: Make Icons
+    run: npm run electron:generate-icons
+# Build
   - name: Build with Electron
     run: npm run electron:build
 
