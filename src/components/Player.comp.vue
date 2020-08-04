@@ -41,13 +41,16 @@
             <div v-if="!isAppBusy">
 
                 <div v-if="streamURLs.length>0">
+                    <!--
                     <div class="buttons" >
                         <button class="button is-success" v-on:click="onVideoPlayClick">Start</button>
                         <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
                     </div>
+                    -->
                     {{/* JSON.stringify(streamURLs) */}}
                     <div class="buttons has-addons">
                         <button v-for="item in streamURLs" :key="item.resolution" class="button" v-on:click="onVideoResolutionClick(item.url)"> {{item.resolution}} </button>
+                        <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
                     </div>
 
                     <div>

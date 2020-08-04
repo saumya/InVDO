@@ -44,7 +44,7 @@
 const utils = {
     info: "Util : info : 1.0.0",
     api:{
-        endpoint: 'https://invidious.snopyta.org/api/v1',
+        endpoint: 'https://invidio.us/api/v1',
         info: '/stats',
 
         /* /:id */
