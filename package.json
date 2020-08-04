@@ -2,7 +2,7 @@
   "author": "Saumya",
   "description": "A VideoPlayer for YouTube.",
   "name": "invdo",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "private": true,
   "productName": "InVDO",
   "repository": {
