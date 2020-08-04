@@ -15,10 +15,11 @@
             <h1 class="title"> Server Details </h1>
             <h2 class="subtitle">Details about the API server.</h2>
             <div> 
-                Please refer here for <a href="https://github.com/iv-org/invidious/wiki/Invidious-Instances">All the instances.</a>
-                Choose one to put here.
+                Please refer <strong> https://github.com/iv-org/invidious/wiki/Invidious-Instances </strong> for all the instances.
+                Choose one from the list to put here.
                 <ul>
-                    <li> <strong>Shutdown</strong> https://invidio.us </li>
+                    Example: 
+                    <li> https://invidio.us - <strong>Shutdown</strong> </li>
                     <li>https://invidious.snopyta.org</li>
                     <li>https://invidious.13ad.de</li>
                 </ul> 
