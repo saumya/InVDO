@@ -4,7 +4,7 @@ import Utils from './utils'
 
 
 const state = {
-    app_version: '0.6.3',
+    app_version: '0.7.0',
     info: 'VueX in Action',
     is_busy: false,
     server: 'https://invidious.snopyta.org',
