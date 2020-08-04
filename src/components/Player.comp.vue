@@ -183,7 +183,10 @@ export default {
             const url = ('https://www.youtube-nocookie.com/embed/'+this.selectedVideo.videoId)
             return url
         },
-        invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.selectedVideo.videoId) } 
+        // https://invidio.us/watch?v=
+        // https://invidious.snopyta.org/watch?v=
+        //invidiousUrl: function(){ return ('https://invidio.us/watch?v='+this.selectedVideo.videoId) } 
+        invidiousUrl: function(){ return ('https://invidious.snopyta.org/watch?v='+this.selectedVideo.videoId) } 
     },
 
     // Lifecycle Hook
