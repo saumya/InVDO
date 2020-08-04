@@ -7,6 +7,7 @@ const state = {
     app_version: '0.6.3',
     info: 'VueX in Action',
     is_busy: false,
+    server: 'https://invidious.snopyta.org',
     popular:[],
     trending:[],
     search_list:[],
@@ -35,6 +36,7 @@ const getters = {
     getAppVersion: state=> state.app_version,
     getInfoMessage: state=> state.info,
     getWhetherBusy: state=> state.is_busy,
+    getServerName: state=> state.server,
     getPopularList: state=> state.popular,
     getTrendingList: state=> state.trending,
     getSearchList: state=> state.search_list,
@@ -55,11 +57,13 @@ const actions = {
         console.log('test_api_action : payload', payload)
         console.log('test_api_action : commit', commit)
         console.log('test_api_action : state', state)
-        
     },
-    get_info_action: ({commit})=>{
+    set_server_name_action:({commit}, payload)=>{
+        commit('UPDATE_SERVER_URL', payload)
+    },
+    get_info_action: ({commit, state})=>{
         console.log('get_info_action : ')
-        const url = Utils.api.endpoint + Utils.api.info
+        const url = state.server + Utils.api.endpoint + Utils.api.info
         fetch(url)
         .then(success=>{
             //console.log('success',success)
@@ -73,14 +77,14 @@ const actions = {
             }
         }).catch(error1=>console.log('error: 1 :', error1))
     },
-    get_top_action: ()=>{
+    get_top_action: ({state})=>{
         console.log('get_top_action : ')
-        const url = Utils.api.endpoint + Utils.api.top
+        const url = state.server + Utils.api.endpoint + Utils.api.top
         console.log(url)
     },
-    get_popular_action: ({commit})=>{
+    get_popular_action: ({commit, state})=>{
         console.log('get_popular_action : ')
-        const url = Utils.api.endpoint + Utils.api.popular
+        const url = state.server + Utils.api.endpoint + Utils.api.popular
         
         console.log(url)
         fetch(url).then(success=>{
@@ -90,8 +94,8 @@ const actions = {
         }).catch(error1=>console.log('error:1:',error1))
         
     },
-    get_trending_action: ({commit})=>{
-        const url = Utils.api.endpoint + Utils.api.trending
+    get_trending_action: ({commit, state})=>{
+        const url = state.server + Utils.api.endpoint + Utils.api.trending
         /*
         fetch(url).then(success=>{
             if(success.status == '200'){
@@ -101,8 +105,8 @@ const actions = {
         */
         Utils.actions.callTheApiEndpointAction(commit,url)
     },
-    trending_by_music_action: ({commit})=>{
-        const url = Utils.api.endpoint + Utils.api.trending + '/?type=Music'
+    trending_by_music_action: ({commit, state})=>{
+        const url = state.server + Utils.api.endpoint + Utils.api.trending + '/?type=Music'
         /*
         fetch(url).then(success=>{
             if(success.status == '200'){
@@ -112,8 +116,8 @@ const actions = {
         */
         Utils.actions.callTheApiEndpointAction(commit,url)
     },
-    trending_by_movies_action: ({commit})=>{
-        const url = Utils.api.endpoint + Utils.api.trending + '/?type=Movies'
+    trending_by_movies_action: ({commit, state})=>{
+        const url = state.server + Utils.api.endpoint + Utils.api.trending + '/?type=Movies'
         /*
         fetch(url).then(success=>{
             if(success.status == '200'){
@@ -123,8 +127,8 @@ const actions = {
         */
        Utils.actions.callTheApiEndpointAction(commit,url)
     },
-    trending_by_gaming_action: ({commit})=>{
-        const url = Utils.api.endpoint + Utils.api.trending + '/?type=Gaming'
+    trending_by_gaming_action: ({commit, state})=>{
+        const url = state.server + Utils.api.endpoint + Utils.api.trending + '/?type=Gaming'
         /*
         fetch(url).then(success=>{
             if(success.status == '200'){
@@ -134,8 +138,8 @@ const actions = {
         */
        Utils.actions.callTheApiEndpointAction(commit,url)
     },
-    trending_by_news_action: ({commit})=>{
-        const url = Utils.api.endpoint + Utils.api.trending + '/?type=News'
+    trending_by_news_action: ({commit, state})=>{
+        const url = state.server + Utils.api.endpoint + Utils.api.trending + '/?type=News'
         /*
         fetch(url).then(success=>{
             if(success.status == '200'){
@@ -145,10 +149,10 @@ const actions = {
         */
        Utils.actions.callTheApiEndpointAction(commit,url)
     },
-    search_video_action: ({commit}, payload)=>{
+    search_video_action: ({commit, state}, payload)=>{
         console.log('search_video_action : payload', payload)
 
-        const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload
+        const url = state.server + Utils.api.endpoint + Utils.api.search + '?q=' + payload
         //const url = Utils.api.endpoint + Utils.api.search + '?q=' + payload + '&page=1'
 
         fetch(url).then(success=>{
@@ -157,14 +161,14 @@ const actions = {
             }
         }).catch(error1=>console.log('error:1:',error1))
     },
-    get_video_urls_action: ({commit}, payload)=>{
+    get_video_urls_action: ({commit, state}, payload)=>{
         console.log('get_video_urls_action', payload)
         const videoId = payload.videoId
         const isLiveVideo = payload.liveNow
         console.log('video id', videoId)
         console.log('Live', isLiveVideo)
         //console.log('commit', commit)
-        const url = Utils.api.endpoint + Utils.api.videos + videoId + Utils.api.videoUrls
+        const url = state.server + Utils.api.endpoint + Utils.api.videos + videoId + Utils.api.videoUrls
         
         console.log('get_video_urls_action: url', url)
 
@@ -227,6 +231,7 @@ const actions = {
 const mutations = {
     UPDATE_INFO: (state,message)=>(state.info=message),
     UPDATE_BUSY_STATUS: (state,status)=>(state.is_busy=status),
+    UPDATE_SERVER_URL: (state, serverUrl)=>(state.server=serverUrl),
     UPDATE_POPULAR_LIST: (state,populars)=>(state.popular=populars),
     UPDATE_TRENDING_LIST: (state,trendings)=>(state.trending=trendings),
     UPDATE_SEARCH_LIST: (state, searches)=>(state.search_list=searches),

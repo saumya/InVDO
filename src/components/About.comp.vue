@@ -10,14 +10,31 @@
                 <li> Clutter free and Fresh Look </li>
             </ul>
         </p>
-
+        
         <section class="section">
-        <h1 class="title"> Server Details </h1>
-        <h2 class="subtitle">Details about the API server.</h2>
-        <p class="control"> 
-            <button class="button" v-on:click="onInfoClick"> Get Info </button> 
-        </p>
-        {{ getInfo }}
+            <h1 class="title"> Server Details </h1>
+            <h2 class="subtitle">Details about the API server.</h2>
+            <div> 
+                Please refer here for <a href="https://github.com/iv-org/invidious/wiki/Invidious-Instances">All the instances.</a>
+                Choose one to put here.
+                <ul>
+                    <li> <strong>Shutdown</strong> https://invidio.us </li>
+                    <li>https://invidious.snopyta.org</li>
+                    <li>https://invidious.13ad.de</li>
+                </ul> 
+            </div>
+
+            <div class="field has-addons">
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Video" v-model="serverString" />
+                </p>
+                <p class="control"> <button class="button" v-on:click="onSetServer">Set Server</button> </p>
+            </div>
+
+            <p class="control"> 
+                <button class="button" v-on:click="onInfoClick"> Get Info </button> 
+            </p>
+            {{ getInfo }}
         </section>
     </section>
 </template>
@@ -25,6 +42,11 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'AboutComponent',
+    data: function(){
+        return({
+            serverString: 'https://invidio.us'
+        })
+    },
     computed: {
         ...mapGetters({
             version : 'messages/getAppVersion', 
@@ -33,6 +55,7 @@ export default {
     },
     methods: {
         ...mapActions({ 
+            setServerName : 'messages/set_server_name_action',
             getInfoAction : 'messages/get_info_action' 
         }),
         onInfoClick(){
@@ -41,6 +64,10 @@ export default {
             // "getInfoAction" to " this.$store.dispatch( 'messages/get_info_action' ) "
             this.getInfoAction()
         },
+        onSetServer(){
+            console.log( 'onSetServer', this.serverString )
+            this.setServerName( this.serverString )
+        }
     }
         
 }

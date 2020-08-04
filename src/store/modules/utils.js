@@ -44,7 +44,9 @@
 const utils = {
     info: "Util : info : 1.0.0",
     api:{
-        endpoint: 'https://invidio.us/api/v1',
+        /* apiServer: Will be set by the user in Application */
+        /* apiServer: 'https://invidious.snopyta.org/', */
+        endpoint: '/api/v1',
         info: '/stats',
 
         /* /:id */
