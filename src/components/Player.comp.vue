@@ -38,17 +38,21 @@
             {{ (streamURLs.length>0) ? "" : "No Stream URLs found. Probably it is live. Live videos are work in progress. I am working my best to resolve this as soon as possible." }}
 
             <!-- Player : Stream -->
-            <div>
+            <div v-if="!isAppBusy">
 
                 <div v-if="streamURLs.length>0">
-                    <div class="buttons" v-if="!isAppBusy">
+                    <div class="buttons" >
                         <button class="button is-success" v-on:click="onVideoPlayClick">Start</button>
                         <button class="button is-success" v-on:click="onVideoPauseClick">Pause / Play</button>
-                        
                     </div>
-                    <div v-if="streamURLs.length>0">
+                    {{/* JSON.stringify(streamURLs) */}}
+                    <div class="buttons has-addons">
+                        <button v-for="item in streamURLs" :key="item.resolution" class="button" v-on:click="onVideoResolutionClick(item.url)"> {{item.resolution}} </button>
+                    </div>
+
+                    <div>
                         <video controls width="560" height="315" ref="videoPlayer_2">
-                            <source type="video/mp4" :src="streamURLs[0].url+'&local=true'">
+                            <!-- <source type="video/mp4" :src="streamURLs[0].url+'&local=true'"> -->
                             <!--
                                 ref: 
                                 Always use "local" to proxy video through the server without creating an account
@@ -218,8 +222,11 @@ export default {
         
         //console.log('-------------------------------------')
         //console.log('Live Video : query :', video_live)
-        
-        //console.log('-------------------------------------')
+        /*
+        console.log('-------------------------------------')
+        console.log( this.mediaURLs )
+        console.log('-------------------------------------')
+        */
     },
     destroyed: function(){
         console.log('Player : destroyed')
@@ -265,6 +272,8 @@ export default {
             this.$refs.videoPlayer.play();
             this.$refs.audioPlayer.play();
             */
+
+           this.$refs.videoPlayer_2.src = this.streamURLs[0].url
            // Streaming player
            this.$refs.videoPlayer_2.load();
            this.$refs.videoPlayer_2.play();
@@ -275,6 +284,13 @@ export default {
             }else{
                 this.$refs.videoPlayer_2.pause();
             }
+        },
+        onVideoResolutionClick: function(url){
+            console.log( 'onVideoResolutionClick', url )
+            this.$refs.videoPlayer_2.src = url
+           // Streaming player
+           this.$refs.videoPlayer_2.load();
+           this.$refs.videoPlayer_2.play();
         },
         onLivePlayClick: function(){
             console.log('onLivePlayClick')
