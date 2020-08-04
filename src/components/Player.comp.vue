@@ -47,7 +47,7 @@
                         
                     </div>
                     <div v-if="streamURLs.length>0">
-                        <video controls width="560" height="315" ref="videoPlayer">
+                        <video controls width="560" height="315" ref="videoPlayer_2">
                             <source type="video/mp4" :src="streamURLs[0].url+'&local=true'">
                             <!--
                                 ref: 
@@ -140,6 +140,18 @@
             </div>
             -->
 
+        </div>
+        <div style="margin-top:1em">
+            <h1 class="title">Audio Only Players</h1>
+            <h2 class="subtitle">Different Quality audios</h2>
+            <ul id="audio_players">
+                <li v-for="item in mediaURLs.webmAudios" :key="item.bitrate">
+                    <audio controls :src="item.url" ref="audioPlayer" />
+                </li>
+            </ul>
+        </div>
+        <div>
+            {{/* JSON.stringify(mediaURLs.webmAudios) */}}
         </div>
 
         
@@ -241,8 +253,8 @@ export default {
         },
         onLoadVideoClick: function(){
             console.log('onLoadVideoClick')
-            console.log( this.$refs.videoPlayer )
-            this.$refs.videoPlayer.load();
+            console.log( this.$refs.videoPlayer_2 )
+            this.$refs.videoPlayer_2.load();
         },
         onVideoPlayClick: function(){
             //console.log(event)
@@ -254,14 +266,14 @@ export default {
             this.$refs.audioPlayer.play();
             */
            // Streaming player
-           this.$refs.videoPlayer.load();
-           this.$refs.videoPlayer.play();
+           this.$refs.videoPlayer_2.load();
+           this.$refs.videoPlayer_2.play();
         },
         onVideoPauseClick: function(){
-            if(this.$refs.videoPlayer.paused){
-                this.$refs.videoPlayer.play();
+            if(this.$refs.videoPlayer_2.paused){
+                this.$refs.videoPlayer_2.play();
             }else{
-                this.$refs.videoPlayer.pause();
+                this.$refs.videoPlayer_2.pause();
             }
         },
         onLivePlayClick: function(){
@@ -287,3 +299,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+audio {
+    width: 100%;
+}
+</style>
